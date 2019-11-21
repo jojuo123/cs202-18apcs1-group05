@@ -1,0 +1,23 @@
+#ifndef _ANIMAL_H_
+#define _ANIMAL_H_
+
+#include <iostream>
+#include <math.h>
+#include "Predefine.h"
+#include <algorithm>
+#include "Object.h"
+#include "Obstacle.h"
+#include <string>
+
+class Animal  : public Obstacle
+{
+protected:
+
+public:
+	Animal() : Obstacle() { }
+	Animal(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Obstacle(_w, _h, _s, _c) { }
+};
+
+#endif 
+
+
