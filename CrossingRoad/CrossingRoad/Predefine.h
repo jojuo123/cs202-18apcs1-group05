@@ -1,7 +1,7 @@
 ﻿#ifndef _PREDEFINE_
 #define _PREDEFINE_
 
-//#include <Windows.h>
+#include <Windows.h>
 #include <SFML/System.hpp>
 
 using namespace std;

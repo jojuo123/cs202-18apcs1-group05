@@ -15,7 +15,7 @@
 #include <vector>
 #include "Level.h"
 #include "Game.h"
-//#include <Windows.h>
+#include <Windows.h>
 #include "Menu.h"
 #include <SFML/Graphics.hpp>
 

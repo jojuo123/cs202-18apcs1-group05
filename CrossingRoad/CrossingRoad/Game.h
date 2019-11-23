@@ -14,7 +14,7 @@
 #include "Player.h"
 #include <vector>
 #include "Level.h"
-//#include <Windows.h>
+#include <Windows.h>
 
 using namespace std;
 
@@ -34,8 +34,8 @@ public:
 	void SaveGame(istream);
 	void LoadGame(ostream);
 	void HandlePlayerInput(int);
-	//void Pause(HANDLE);
-	//void Resume(HANDLE);
+	void Pause(HANDLE);
+	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	void Exit(int option);
 	~Game() {}
