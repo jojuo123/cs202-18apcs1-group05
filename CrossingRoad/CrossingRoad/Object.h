@@ -17,8 +17,9 @@ protected:
 public:
 	Object() { width = height = 0; speed = 0; coord = Coord(0, 0); }
 	Object(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : width(_w), height(_h), speed(_s), coord(_c) {}
-	void Move(Coord);
-	void Move(objSize, objSize);
+	virtual void Move(Coord);
+	virtual void Move(objSize, objSize); //relative objSizes for moves
+	friend class Scene;
 };
 
 #endif // !_OBJECT_H_

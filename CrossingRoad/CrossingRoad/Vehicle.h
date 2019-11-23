@@ -16,6 +16,7 @@ protected:
 public:
 	Vehicle() : Obstacle() { }
 	Vehicle(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Obstacle(_w, _h, _s, _c) { }
+	friend class Scene;
 };
 
 #endif 
