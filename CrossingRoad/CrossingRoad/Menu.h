@@ -14,7 +14,7 @@
 #include "Player.h"
 #include <vector>
 #include "Level.h"
-#include <Windows.h>
+//#include <Windows.h>
 #include <SFML/Graphics.hpp>
 
 using namespace std;

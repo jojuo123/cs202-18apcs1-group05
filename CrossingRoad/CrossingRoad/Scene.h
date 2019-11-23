@@ -15,7 +15,7 @@
 #include <vector>
 #include "Level.h"
 #include "Game.h"
-#include <Windows.h>
+//#include <Windows.h>
 #include "Menu.h"
 #include <SFML/Graphics.hpp>
 
@@ -33,7 +33,8 @@ private:
 		using namespace sf;
 		g = Game::getInstance();
 		m = Menu();
-		window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
+		//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
+		window.create(VideoMode(800, 600), "Viet cong muon nam");
 		menuFont.loadFromFile("verdana.ttf");
 	}
 	static Scene* sc;
@@ -56,7 +57,7 @@ public:
 		delete g;
 	}
 };
-Scene* Scene::sc = nullptr;
+//Scene* Scene::sc = nullptr;
 
 #endif // !_GAME_H_
 

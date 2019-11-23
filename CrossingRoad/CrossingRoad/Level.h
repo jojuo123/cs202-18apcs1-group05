@@ -24,8 +24,8 @@ private:
 	int noOfMotoLane;
 	vector<Obstacle*> obsVec;
 public:
-	~Level();
-	Level();
+	~Level() {}
+	Level() {}
 	vector<Obstacle> GetLanesDetails(int id);
 	friend class Scene;
 	friend class Game;

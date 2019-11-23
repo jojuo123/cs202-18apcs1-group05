@@ -14,7 +14,7 @@
 #include "Player.h"
 #include <vector>
 #include "Level.h"
-#include <Windows.h>
+//#include <Windows.h>
 
 using namespace std;
 
@@ -27,23 +27,23 @@ private:
 	Level l;
 	int currentRoad;
 	static Game* instance;
-	Game();
+	Game() {}
 public:
 	void StartGame();
 	void resetGame();
 	void SaveGame(istream);
 	void LoadGame(ostream);
 	void HandlePlayerInput(int);
-	void Pause(HANDLE);
-	void Resume(HANDLE);
+	//void Pause(HANDLE);
+	//void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	void Exit(int option);
-	~Game();
+	~Game() {}
 	static Game* getInstance() {
 		return (instance == nullptr ? instance = new Game() : instance);
 	}
 	friend class Scene;
 };
-Game* Game::instance = nullptr;
+//
 
 #endif // !_GAME_H_
