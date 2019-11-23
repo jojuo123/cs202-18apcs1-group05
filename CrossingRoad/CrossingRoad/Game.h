@@ -27,7 +27,7 @@ private:
 	Level l;
 	int currentRoad;
 	static Game* instance;
-	Game();
+	Game() {}
 public:
 	void StartGame();
 	void resetGame();
@@ -38,12 +38,12 @@ public:
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	void Exit(int option);
-	~Game();
+	~Game() {}
 	static Game* getInstance() {
 		return (instance == nullptr ? instance = new Game() : instance);
 	}
 	friend class Scene;
 };
-Game* Game::instance = nullptr;
+//
 
 #endif // !_GAME_H_

@@ -8,13 +8,14 @@ using namespace std;
 
 #define objSize int
 #define unitPerSecond int
-#define START_MENU 1
-#define ON_GAME_RUNNING 2
-#define PAUSE_GAME 3
+#define MENU_STARTGAME 0
+#define MENU_LOADGAME 1
+#define MENU_SETTING 2
+#define MENU_EXIT 3
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
-sf::String SCREEN_TITLE = "Viet cong muon nam";
+//const int SCREEN_WIDTH = 800;
+//const int SCREEN_HEIGHT = 600;
+//sf::String SCREEN_TITLE = "Viet cong muon nam";
 
 struct Coord
 {
