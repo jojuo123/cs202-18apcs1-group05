@@ -18,6 +18,11 @@ using namespace std;
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
+#define PLAYERINPUT_MOVEUP 30
+#define PLAYERINPUT_MOVEDOWN 04
+#define PLAYERINPUT_MOVELEFT 45
+#define PLAYERINPUT_MOVERIGHT 1975
+
 //const int SCREEN_WIDTH = 800;
 //const int SCREEN_HEIGHT = 600;
 //sf::String SCREEN_TITLE = "Viet cong muon nam";

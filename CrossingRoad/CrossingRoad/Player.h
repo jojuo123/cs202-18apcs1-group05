@@ -19,7 +19,7 @@ public:
 	Player() : Object() { name = ""; }
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, soundPath, _t, _pos) {}
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos, std::string _name) : Object(_s, _c, texturePath, soundPath, _t, _pos), name(_name) {}
-	bool isHit(const Obstacle* &);
+	bool isHit(const Obstacle* &obs);
 	bool inRange();
 	friend class Game;
 	friend class Scene;

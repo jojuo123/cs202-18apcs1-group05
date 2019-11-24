@@ -34,13 +34,14 @@ private:
 	int FPS;
 	int currentRoad;
 	static Game* instance;
+	int score;
 	Game() {}
 public:
 	void StartGame();
 	void resetGame();
 	void SaveGame(istream);
 	void LoadGame(ostream);
-	void HandlePlayerInput(int);
+	void HandlePlayerInput(int input);
 	void Pause(HANDLE);
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
