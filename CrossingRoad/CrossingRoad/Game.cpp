@@ -9,6 +9,7 @@ void Game::StartGame()
 
 void Game::Init()
 {
+	score = 0;
 	player = new Player(0, { 3,5 }, "player.png", "csdn.wav", PLAYER, { 100,100,64,64 });
 }
 
