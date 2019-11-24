@@ -15,8 +15,7 @@ protected:
 
 public:
 	Dinosaur() : Animal() { }
-	Dinosaur(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Animal(_w, _h, _s, _c) { }
-	Dinosaur(objSize _w, objSize _h, unitPerSecond _s, Coord _c, int _a) : Animal(_w, _h, _s, _c, _a) { }
+	Dinosaur(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Animal(_s, _c, texturePath, soundPath, _t, _pos) {}
 	void PlaySound();
 	friend class Scene;
 };

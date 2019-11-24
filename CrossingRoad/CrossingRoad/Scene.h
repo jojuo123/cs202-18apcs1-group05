@@ -15,9 +15,9 @@
 #include <vector>
 #include "Level.h"
 #include "Game.h"
-#include <Windows.h>
+#include "Tile.h"
 #include "Menu.h"
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -25,6 +25,7 @@ using namespace std;
 class Scene
 {
 private:
+	//Tile** map = nullptr;
 	Game* g;
 	Menu m;
 	sf::RenderWindow window;
@@ -50,8 +51,19 @@ public:
 	void Execute();
 	void Destroy();
 	void Draw();
-	void LevelLoader();
+	void Pause();
+	void UpdateCamera();
 	void HandleInput();
+	void Start()
+	{
+		g = Game::getInstance();
+	}
+	void EndOfGame()
+	{
+		delete g;
+	}
+	//void InitMap();
+	void LevelLoader();
 	~Scene() {
 		window.close();
 		delete g;

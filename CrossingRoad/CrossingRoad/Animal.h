@@ -12,11 +12,10 @@
 class Animal  : public Obstacle
 {
 protected:
-	int audioId;
+	
 public:
 	Animal() : Obstacle() { }
-	Animal(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Obstacle(_w, _h, _s, _c) { }
-	Animal(objSize _w, objSize _h, unitPerSecond _s, Coord _c, int _a) : Obstacle(_w, _h, _s, _c), audioId(_a) { }
+	Animal(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Obstacle(_s, _c, texturePath, soundPath, _t, _pos) {}
 	virtual void PlaySound();
 	friend class Scene;
 };

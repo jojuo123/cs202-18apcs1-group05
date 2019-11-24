@@ -15,7 +15,7 @@
 #include <vector>
 #include "Level.h"
 #include <Windows.h>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 
 using namespace std;
 

@@ -9,17 +9,32 @@
 class Object
 {
 protected: 
-	objSize width, height;
-	unitPerSecond speed;
+	//objSize width, height;
+	union
+	{
+		unitPerSecond speed;
+		unitPerSecond timer;
+	};
+	sf::Rect<objSize> position;
+	sf::Texture* texture;
+	bool isMoving = false;
+	ObjectType type;
 	Coord coord;
-
+	sf::SoundBuffer buffer;
+	Direction dir;
+	//bool isDead = false;
 	//shape
 public:
-	Object() { width = height = 0; speed = 0; coord = Coord(0, 0); }
-	Object(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : width(_w), height(_h), speed(_s), coord(_c) {}
-	virtual void Move(Coord);
-	virtual void Move(objSize, objSize); //relative objSizes for moves
+	Object() { position = {0, 0, 0, 0}; speed = 0; coord = Coord(0, 0); }
+	Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos);
+	//virtual void Move(Coord);
+	//virtual void Move(objSize, objSize); //relative objSizes for moves
+	virtual void Move(Direction, objSize);
 	friend class Scene;
+	virtual ~Object()
+	{
+		delete texture;
+	}
 };
 
 #endif // !_OBJECT_H_

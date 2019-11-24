@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{FBBE6E8F-2AFF-45D8-B9FE-447FD223D021}</ProjectGuid>
     <RootNamespace>CrossingRoad</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -87,8 +87,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>D:\Study\HCMUS\CS\CS202\Project202\SDL2_ttf-2.0.15\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_mixer-2.0.4\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_image-2.0.5\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\lib;D:\Study\HCMUS\CS\CS202\Project202\SDL2-devel-2.0.10-VC\SDL2-2.0.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies);SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\lib;D:\Study\HCMUS\CS\CS202\Project202\SDL2_ttf-2.0.15\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_mixer-2.0.4\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_image-2.0.5\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\lib;D:\Study\HCMUS\CS\CS202\Project202\SDL2-devel-2.0.10-VC\SDL2-2.0.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,14 +110,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Study\HCMUS\CS\CS202\Project202\SDL2_ttf-2.0.15\include;D:\Study\HCMUS\CS\CS202\Project202\SDL2_mixer-2.0.4\include;D:\Study\HCMUS\CS\CS202\Project202\SDL2_image-2.0.5\include;D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\include;D:\Study\HCMUS\CS\CS202\Project202\SDL2-devel-2.0.10-VC\SDL2-2.0.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies);SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Study\HCMUS\CS\CS202\Project202\SDL2_ttf-2.0.15\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_mixer-2.0.4\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SDL2_image-2.0.5\lib\x86;D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\lib;D:\Study\HCMUS\CS\CS202\Project202\SDL2-devel-2.0.10-VC\SDL2-2.0.10\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Study\HCMUS\CS\CS202\Project202\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,16 +136,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="Dinosaur.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Motorbike.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Predefine.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Tiger.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Truck.h" />
     <ClInclude Include="Vehicle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="verdana.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
