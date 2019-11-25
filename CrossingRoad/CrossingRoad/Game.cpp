@@ -13,11 +13,13 @@ void Game::Init()
 	score = 0;
 	player = new Player(0, { 3,5 }, "image/player.png", "sound/csdn.wav", PLAYER, { 100,100,64,64 });
 	currentLevel = 1;
+	l = Level(currentLevel);
 	InitMap();
 }
 
 void Game::InitMap()
 {
+	
 	rows = l.FinishLane() + 10;
 	vector<ObjectType> obj = l.getObstacle();
 	while (obj.size() < rows) obj.push_back(NONE);

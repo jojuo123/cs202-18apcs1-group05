@@ -78,8 +78,17 @@ void Scene::HandleInput()
 				g->HandlePlayerInput(PLAYERINPUT_MOVERIGHT);
 			}
 			if (event.key.code == Keyboard::Escape) {
-				//int sel = m.PauseMenu()
-				//if (sel==?) continueGame
+				int sel = m.PauseMenu(window, menuFont);
+				if (sel == 0)
+				{
+					window.clear();
+					continue;
+				}
+				if (sel == 3)
+				{
+					g->ChangeState(GAME_OVER_GAME);
+					break;
+				}
 			}
 		}
 		if (event.type == Event::Closed) {
