@@ -41,7 +41,11 @@ void Scene::Execute()
 {
 	while (g != nullptr) {
 		HandleInput();
-		if (g == nullptr) break;
+		if (g->isEndGame())
+		{
+			EndOfGame();
+			break;
+		}
 		Draw();
 	}
 }
@@ -72,18 +76,15 @@ void Scene::HandleInput()
 			}
 			if (event.key.code == Keyboard::Right) {
 				g->HandlePlayerInput(PLAYERINPUT_MOVERIGHT);
-
 			}
 			if (event.key.code == Keyboard::Escape) {
 				//int sel = m.PauseMenu()
 				//if (sel==?) continueGame
 			}
-
 		}
 		if (event.type == Event::Closed) {
 			//Close the window, end the game...
-			delete g;
-			g = nullptr;
+			g->ChangeState(GAME_OVER_GAME);	
 		}
 	}
 }
