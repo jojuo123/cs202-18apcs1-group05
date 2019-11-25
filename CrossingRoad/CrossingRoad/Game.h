@@ -17,6 +17,7 @@
 #include "Tile.h"
 #include <Windows.h>
 #include <queue>
+#include <memory>
 
 using namespace std;
 
@@ -33,10 +34,14 @@ private:
 	Level l;
 	int FPS;
 	int currentRoad;
-	static Game* instance;
+	//static Game* instance;
 	int score;
-	Game() {}
+	int gameState;
+	//Game() {}
 public:
+	Game()
+	{
+	}
 	void StartGame();
 	void resetGame();
 	void SaveGame(istream);
@@ -46,9 +51,12 @@ public:
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	void Init();
-	void AddObject(int _row);
+	void InitMap();
+	void AddObject(int _row, ObjectType o);
+	void AddTile(int _row, ObjectType o);
 	void InitMap(int, int); 
 	void Exit(int option);
+	bool isEndGame();
 	~Game()
 	{
 		//delete map;
@@ -59,9 +67,10 @@ public:
 		//delete elements in deque
 		//delete object
 	}
-	static Game* getInstance() {
+	/*static Game* getInstance() {
 		return (instance == nullptr ? instance = new Game() : instance);
-	}
+	}*/
+	void ChangeState(int state);
 	friend class Scene;
 };
 //

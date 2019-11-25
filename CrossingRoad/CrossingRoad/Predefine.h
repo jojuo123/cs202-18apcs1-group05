@@ -10,11 +10,14 @@
 using namespace std;
 
 #define objSize int
+
 #define unitPerSecond int
+
 #define MENU_STARTGAME 0
 #define MENU_LOADGAME 1
 #define MENU_SETTING 2
 #define MENU_EXIT 3
+
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
@@ -23,12 +26,19 @@ using namespace std;
 #define PLAYERINPUT_MOVELEFT 45
 #define PLAYERINPUT_MOVERIGHT 1975
 
+#define GAME_IN_GAME 1
+#define GAME_PAUSE_GAME 2
+#define GAME_OVER_GAME 3
+
+
+#define PIXEL_SIZE 64
+
 //const int SCREEN_WIDTH = 800;
 //const int SCREEN_HEIGHT = 600;
 //sf::String SCREEN_TITLE = "Viet cong muon nam";
 
 enum TileType { GRASS, WATER, ROAD, RAIL, TREE };
-enum ObjectType { PLAYER, MOTOR, TRUCK, STICK, LAMP, TIGER, DINOSAUR };
+enum ObjectType { PLAYER, MOTOR, TRUCK, STICK, LAMP, TIGER, DINOSAUR, NONE };
 enum GameState { START, PLAY, EXITE, PAUSE, GAME_OVER, OUT_OF_GAME, CHOOSE_PLAYER };
 enum Direction { UP, DOWN, LEFT, RIGHT };
 

@@ -32,12 +32,13 @@ private:
 	sf::Font menuFont;
 	Scene() {
 		using namespace sf;
-		g = Game::getInstance();
+		//g = Game::getInstance();
 		m = Menu();
 		//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
 		window.create(VideoMode(800, 600), "Viet cong muon nam");
 		menuFont.loadFromFile("verdana.ttf");
 	}
+	
 	static Scene* sc;
 private:
 	void Draw(const Object *obj);
@@ -58,11 +59,13 @@ public:
 	void HandleInput();
 	void Start()
 	{
-		g = Game::getInstance();
+		//g = Game::getInstance();
+		
 	}
 	void EndOfGame()
 	{
 		delete g;
+		g = NULL;
 	}
 	//void InitMap();
 	void LevelLoader();

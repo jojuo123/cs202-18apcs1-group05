@@ -22,10 +22,13 @@ private:
 	int noOfTigLane;
 	int noOfTruLane;
 	int noOfMotoLane;
+	static const int levelListRoad[5];
 public:
 	~Level() {}
-	Level() {}
+	Level() = default;
+	Level(int id);
 	vector<ObjectType> getObstacle(); //random de tra ve list cac obs theo row
+	int FinishLane() { return noOfRoad; }
 	friend class Scene;
 	friend class Game;
 };
