@@ -30,6 +30,11 @@ void Scene::Init() {
 		g->Init();
 		break;
 	}
+	case (MENU_SETTING):
+	{
+		m.SettingMenu(window,menuFont);
+		this->Init();
+	}
 	case (MENU_EXIT): {
 		cerr << "EXIT" << endl;
 		break;

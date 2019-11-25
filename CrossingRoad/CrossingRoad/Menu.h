@@ -23,10 +23,15 @@ using namespace std;
 class Menu
 {
 private:
-
+	bool sound;
+	static const string path[5];
+	string chosenPath;
 public:
 	int StartMenu(sf::RenderWindow &window, sf::Font &font);
 	int PauseMenu(sf::RenderWindow  &window, sf::Font &font);
+	int SettingMenu(sf::RenderWindow &window, sf::Font &font);
+	string chosenPathValue() { return chosenPath; }
+	bool soundValue() { return sound;  }
 };
 
 #endif // !_GAME_H_

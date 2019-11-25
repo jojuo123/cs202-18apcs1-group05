@@ -1,5 +1,12 @@
 #include "Menu.h"
 using namespace std;
+const string Menu::path[5] = {
+	"image/skin1.png",
+	"image/skin2.png",
+	"image/skin3.png",
+	"image/skin4.png",
+	"image/skin5.png",
+};
 
 int Menu::StartMenu(sf::RenderWindow &window, sf::Font &font) {
 	using namespace sf;
@@ -109,6 +116,151 @@ int Menu::PauseMenu(sf::RenderWindow  &window, sf::Font &font) {
 
 		window.display();
 	}
+	return 0;
+}
+
+int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
+{
+	
+	
+	
+	const int size =120;
+	sf::Texture texture;
+	
+	sf::Text text;
+	text.setFont(font);
+	text.setString("SETTING MENU");
+	text.setFillColor(sf::Color(200, 100, 20));
+	text.setPosition(5, 5);
+	text.setScale(3, 3);
+
+	sf::String txt[2] = { "Character skin","Sound"};
+	sf::Vector2f txtPos[2] = {
+		{50,120},
+	{50,250}
+	};
+
+	sf::Text db[2][2];
+	const int nSelect =2;
+	for (int i = 0; i < nSelect; ++i) {
+		db[i][0].setFont(font);
+		db[i][0].setString(txt[i]);
+		db[i][0].setPosition(txtPos[i]);
+		db[i][1].setFont(font);
+		db[i][1].setString(txt[i]);
+		db[i][1].setFillColor(sf::Color(255, 255, 0));
+		db[i][1].setPosition(txtPos[i]);
+	}
+	//sound mode
+	sf::String soundMode[2] = { "On","OFF" };
+	sf::Vector2f soundModePos = { 450,250};
+	sf::Text soundModeText[2][2];
+	for (int i = 0; i < 2; ++i)
+	{
+		soundModeText[i][0].setFont(font);
+		soundModeText[i][0].setString(soundMode[i]);
+		soundModeText[i][0].setPosition(soundModePos);
+		soundModeText[i][1].setFont(font);
+		soundModeText[i][1].setString(soundMode[i]);
+		soundModeText[i][1].setFillColor(sf::Color(255, 255, 0));
+		soundModeText[i][1].setPosition(soundModePos);
+	}
+	int ImgSel = 0;
+	int SoundSel = 1; //sound selected
+	int sel = 0;
+	while (window.isOpen()) {
+		sf::Event ev;
+		while (window.pollEvent(ev)) {
+			if (ev.type == sf::Event::KeyPressed) {
+				switch (ev.key.code) {
+
+				case (sf::Keyboard::Up): {
+					sel--;
+					if (sel < 0) sel += nSelect;
+					break;
+				}
+				case (sf::Keyboard::Down): {
+					sel++;
+					sel %= nSelect;
+					break;
+				}
+				case (sf::Keyboard::Right):
+				{
+					if (sel == 0)
+					{
+						ImgSel++;
+						if (ImgSel == 5)
+						{
+							ImgSel = 0;
+						}
+					}
+					else if (sel == 1)
+					{
+						if (SoundSel == 0)
+							SoundSel = 1;
+						else SoundSel = 0;
+					}
+
+					break;
+				}
+				case (sf::Keyboard::Left):
+				{
+					if (sel == 0)
+					{
+						ImgSel--;
+						if (ImgSel < 0)
+						{
+							ImgSel = 4;
+						}
+					}
+					else if (sel == 1)
+					{
+						if (SoundSel == 0)
+							SoundSel = 1;
+						else SoundSel = 0;
+					}
+					break;
+				}
+				case (sf::Keyboard::Escape): {
+					this->chosenPath = path[sel];
+					SoundSel == 1 ? this->sound = 1 : this->sound = 0;
+					return sel;
+				}
+				}
+			}
+		}
+		window.clear();
+		window.draw(text);
+
+		sf::Sprite sprite;
+		sprite.setPosition(430, 100);
+		texture.loadFromFile(path[ImgSel]);
+		
+
+		sf::Vector2u v = texture.getSize();
+		float scaleX = size / (float)v.x;
+		float scaleY = size / (float)v.y;
+		sprite.setScale(scaleX, scaleY);
+		sprite.setTexture(texture);
+		window.draw(sprite);
+		for (int i = 0; i < nSelect; ++i)
+			if (i == sel)
+			{
+				window.draw(db[i][1]);
+				if (sel == 1)
+				{
+					window.draw(soundModeText[SoundSel][1]);
+				}
+			}
+			else
+			{
+				window.draw(db[i][0]);
+				if (sel != 1)
+					window.draw(soundModeText[SoundSel][0]);
+			}
+		window.display();
+	}
+
 	return 0;
 }
 
