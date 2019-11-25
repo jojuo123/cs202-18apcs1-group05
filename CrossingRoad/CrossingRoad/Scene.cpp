@@ -6,6 +6,10 @@ void Scene::Draw(const Object * obj)
 {
 	if (obj->texture == nullptr) return;
 	sf::Sprite sprite(*(obj->texture));
+	sf::Vector2u v = obj->texture->getSize();
+	float scaleX = obj->position.width / (float)v.x;
+	float scaleY = obj->position.height / (float)v.y;
+	sprite.setScale(scaleX, scaleY);
 	sprite.setPosition(obj->position.left, obj->position.top);
 	window.draw(sprite);
 }
@@ -21,7 +25,7 @@ void Scene::Init() {
 	switch (sel)
 	{
 	case (MENU_STARTGAME): {
-		window.setFramerateLimit(50);
+		window.setFramerateLimit(60);
 		g = new Game();
 		g->Init();
 		break;
