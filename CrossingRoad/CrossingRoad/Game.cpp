@@ -19,7 +19,6 @@ void Game::Init()
 
 void Game::InitMap()
 {
-	
 	rows = l.FinishLane() + 10;
 	vector<ObjectType> obj = l.getObstacle();
 	while (obj.size() < rows) obj.push_back(NONE);

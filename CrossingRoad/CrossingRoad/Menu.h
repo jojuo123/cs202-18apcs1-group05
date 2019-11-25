@@ -26,7 +26,7 @@ private:
 
 public:
 	int StartMenu(sf::RenderWindow &window, sf::Font &font);
-	int PauseMenu(sf::RenderWindow  &window, sf::Font &font);
+	int PauseMenu();
 };
 
 #endif // !_GAME_H_
