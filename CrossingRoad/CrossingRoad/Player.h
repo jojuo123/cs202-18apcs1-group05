@@ -14,10 +14,11 @@ class Player : public Object
 protected:
 	std::string name;
 	//int state;
+	bool isDead;
 public:
 	Player() : Object() { name = ""; }
-	Player(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Object(_w, _h, _s, _c) { name = ""; }
-	Player(objSize _w, objSize _h, unitPerSecond _s, Coord _c, string _name) : Object(_w, _h, _s, _c), name(_name) {}
+	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, soundPath, _t, _pos) {}
+	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos, std::string _name) : Object(_s, _c, texturePath, soundPath, _t, _pos), name(_name) {}
 	bool isHit(const Obstacle* &);
 	bool inRange();
 	friend class Game;

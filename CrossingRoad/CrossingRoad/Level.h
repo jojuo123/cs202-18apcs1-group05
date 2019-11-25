@@ -22,11 +22,10 @@ private:
 	int noOfTigLane;
 	int noOfTruLane;
 	int noOfMotoLane;
-	vector<Obstacle*> obsVec;
 public:
 	~Level() {}
 	Level() {}
-	vector<Obstacle> GetLanesDetails(int id);
+	vector<ObjectType> getObstacle(); //random de tra ve list cac obs theo row
 	friend class Scene;
 	friend class Game;
 };

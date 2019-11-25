@@ -1,6 +1,6 @@
 #include <iostream>
 //#include <SDL.h>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "Scene.h"
 
 using namespace std;

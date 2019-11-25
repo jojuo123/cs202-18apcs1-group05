@@ -14,7 +14,9 @@
 #include "Player.h"
 #include <vector>
 #include "Level.h"
+#include "Tile.h"
 #include <Windows.h>
+#include <queue>
 
 using namespace std;
 
@@ -22,9 +24,14 @@ using namespace std;
 class Game
 {
 private:
+	int rows, columns;
 	int currentLevel;
 	Player* player;
+	deque<Object*> dqOb;
+	Tile** map;
+	Obstacle* dino, * truct, * tiger, * motor;
 	Level l;
+	int FPS;
 	int currentRoad;
 	static Game* instance;
 	Game() {}
@@ -37,8 +44,20 @@ public:
 	void Pause(HANDLE);
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
+	void Init();
+	void AddObject(int _row);
+	void InitMap(int, int); 
 	void Exit(int option);
-	~Game() {}
+	~Game()
+	{
+		//delete map;
+		for (int i = 0; i < rows; i++)
+			delete[] map[i];
+		delete[] map;
+		delete player;
+		//delete elements in deque
+		//delete object
+	}
 	static Game* getInstance() {
 		return (instance == nullptr ? instance = new Game() : instance);
 	}

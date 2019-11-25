@@ -15,7 +15,7 @@ protected:
 	
 public:
 	Truck() : Vehicle() { }
-	Truck(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Vehicle(_w, _h, _s, _c) { }
+	Truck(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Vehicle(_s, _c, texturePath, soundPath, _t, _pos) {}
 	friend class Scene;
 };
 

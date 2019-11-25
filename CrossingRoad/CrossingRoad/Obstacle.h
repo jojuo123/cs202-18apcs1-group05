@@ -14,7 +14,7 @@ protected:
 	
 public:
 	Obstacle() : Object() {  }
-	Obstacle(objSize _w, objSize _h, unitPerSecond _s, Coord _c) : Object(_w, _h, _s, _c) { }
+	Obstacle(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, soundPath, _t, _pos) {}
 };
 
 #endif // !_OBJECT_H_
