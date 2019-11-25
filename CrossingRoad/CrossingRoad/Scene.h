@@ -39,7 +39,9 @@ private:
 		menuFont.loadFromFile("verdana.ttf");
 	}
 	static Scene* sc;
-
+private:
+	void Draw(const Object *obj);
+	void Draw(const Tile *tile);
 public:
 	static Scene* getInstance() {
 		if (sc != NULL) return sc;
