@@ -36,3 +36,10 @@ void Object::Move(Direction dir, objSize numPixel)
 	}
 	}
 }
+
+void Object::playSound()
+{
+	sf::Sound sound;
+	sound.setBuffer(buffer);
+	sound.play();
+}

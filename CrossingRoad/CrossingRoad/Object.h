@@ -31,6 +31,7 @@ public:
 	//virtual void Move(objSize, objSize); //relative objSizes for moves
 	virtual void Move(Direction dir, objSize numPixel);
 	sf::Rect<objSize> getPosition() const { return position; }
+	void playSound();
 	friend class Scene;
 	virtual ~Object()
 	{

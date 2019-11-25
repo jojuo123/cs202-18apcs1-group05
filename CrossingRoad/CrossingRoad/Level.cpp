@@ -5,7 +5,7 @@ const int Level::levelListRoad[5] = {
 };
 Level::Level(int id)
 {
-
+	noOfRoad = 10;
 }
 
 vector<ObjectType> Level::getObstacle()
