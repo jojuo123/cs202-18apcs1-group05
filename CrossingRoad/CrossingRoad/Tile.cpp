@@ -8,7 +8,7 @@ position(position) {
 	using namespace std;
 	texture = new sf::Texture();
 	if (!texture->loadFromFile(imgPath)) {
-		cerr << "Load anh co van de roi thang loz: " << imgPath << endl;
+		cerr << "Tile.cpp Load anh co van de roi thang loz: " << imgPath << endl;
 		delete texture;
 		texture = nullptr;
 		return;
@@ -18,6 +18,7 @@ position(position) {
 Tile::~Tile()
 {
 	delete texture;
+	texture = nullptr;
 }
 
 Tile& Tile::operator=(const Tile& other)

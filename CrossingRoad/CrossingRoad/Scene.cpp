@@ -31,6 +31,27 @@ void Scene::Init() {
 		g->Init(m.chosenPathValue());
 		break;
 	}
+	case (MENU_LOADGAME): {
+		int savedLevel=-1;
+		ifstream fin("SavedLevel.txt", ifstream::in);
+		if (fin.is_open())
+		{
+			fin >> savedLevel;
+			fin.close();
+			if (savedLevel != -1)
+			{
+				g = new Game();
+				g->Init(m.chosenPathValue(), savedLevel);
+			}
+			else
+			{
+				cerr << "No saved game exist";
+				fin.close();
+				this->Init();
+			}
+		}
+		break;
+	}
 	case (MENU_SETTING):
 	{
 		m.SettingMenu(window,menuFont);
@@ -86,12 +107,27 @@ void Scene::HandleInput()
 			}
 			if (event.key.code == Keyboard::Escape) {
 				int sel = m.PauseMenu(window, menuFont);
-				if (sel == 0)
+				if (sel == 0) //continue
 				{
 					window.clear();
 					continue;
 				}
-				if (sel == 3)
+				else if (sel == 1) // reset 
+				{
+					window.clear();
+					window.setFramerateLimit(60);
+					EndOfGame();
+					g = new Game();
+					g->Init(m.chosenPathValue());
+					this->Execute();
+				}
+				else if (sel == 2)// save game
+				{
+					ofstream fout("SavedLevel.txt", ofstream::out);
+					fout << g->getCurrentLevel();
+					fout.close();
+				}
+				if (sel == 3) // exit
 				{
 					g->ChangeState(GAME_OVER_GAME);
 					break;

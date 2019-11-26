@@ -2,6 +2,7 @@
 #define _SCENE_H_
 
 #include <iostream>
+#include <fstream>
 #include "Object.h"
 #include "Predefine.h"
 #include "Obstacle.h"

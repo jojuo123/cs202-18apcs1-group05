@@ -125,7 +125,7 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 	
 	
 	const int size =120;
-	sf::Texture texture;
+	
 	
 	sf::Text text;
 	text.setFont(font);
@@ -152,7 +152,7 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 		db[i][1].setPosition(txtPos[i]);
 	}
 	//sound mode
-	sf::String soundMode[2] = { "On","OFF" };
+	sf::String soundMode[2] = { "OFF","ON" };
 	sf::Vector2f soundModePos = { 450,250};
 	sf::Text soundModeText[2][2];
 	for (int i = 0; i < 2; ++i)
@@ -166,7 +166,7 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 		soundModeText[i][1].setPosition(soundModePos);
 	}
 	int ImgSel = 0;
-	int SoundSel = 1; //sound selected
+	int SoundSel = this->sound; //sound selected
 	int sel = 0;
 	while (window.isOpen()) {
 		sf::Event ev;
@@ -232,17 +232,19 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 		window.clear();
 		window.draw(text);
 
+		sf::Texture texture;
 		sf::Sprite sprite;
 		sprite.setPosition(430, 100);
-		texture.loadFromFile(path[ImgSel]);
+		if (texture.loadFromFile(path[ImgSel]))
+		{
+			sf::Vector2u v = texture.getSize();
+			float scaleX = size / (float)v.x;
+			float scaleY = size / (float)v.y;
+			sprite.setScale(scaleX, scaleY);
+			sprite.setTexture(texture);
+			window.draw(sprite);
+		}
 		
-
-		sf::Vector2u v = texture.getSize();
-		float scaleX = size / (float)v.x;
-		float scaleY = size / (float)v.y;
-		sprite.setScale(scaleX, scaleY);
-		sprite.setTexture(texture);
-		window.draw(sprite);
 		for (int i = 0; i < nSelect; ++i)
 			if (i == sel)
 			{
