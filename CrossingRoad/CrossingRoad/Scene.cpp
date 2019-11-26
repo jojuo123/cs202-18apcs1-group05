@@ -27,13 +27,15 @@ void Scene::Init() {
 	case (MENU_STARTGAME): {
 		window.setFramerateLimit(60);
 		g = new Game();
-		g->Init();
+		//g->Init();
+		g->Init(m.chosenPathValue());
 		break;
 	}
 	case (MENU_SETTING):
 	{
 		m.SettingMenu(window,menuFont);
 		this->Init();
+		break;
 	}
 	case (MENU_EXIT): {
 		cerr << "EXIT" << endl;

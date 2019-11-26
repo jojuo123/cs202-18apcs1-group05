@@ -19,3 +19,21 @@ Tile::~Tile()
 {
 	delete texture;
 }
+
+Tile& Tile::operator=(const Tile& other)
+{
+	if (&other == this) return (*this);
+	this->position = other.position;
+	this->type = other.type;
+	delete texture;
+	using namespace sf;
+	texture = new Texture();
+	(*texture) = (*(other.texture));
+	return (*this);
+}
+
+void Tile::SetTopLeftCoord(objSize _top, objSize _left)
+{
+	this->position.top = _top;
+	this->position.left = _left;
+}

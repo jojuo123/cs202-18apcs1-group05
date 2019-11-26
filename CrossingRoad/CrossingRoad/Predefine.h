@@ -5,6 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <ctime>
 #include <Windows.h>
 
 using namespace std;

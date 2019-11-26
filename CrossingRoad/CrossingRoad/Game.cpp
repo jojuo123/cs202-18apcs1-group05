@@ -7,14 +7,25 @@ void Game::StartGame()
 	
 }
 
-void Game::Init()
+void Game::Init(string chosenPath)
 {
 	gameState = GAME_IN_GAME;
 	score = 0;
-	player = new Player(0, { 3,5 }, "image/player.png", "sound/csdn.wav", PLAYER, { 100,100,64,64 });
+	player = new Player(0, { 3,5 }, chosenPath, "sound/csdn.wav", PLAYER, { 100,100,64,64 });
 	currentLevel = 1;
 	l = Level(currentLevel);
+	InitTile();
 	InitMap();
+}
+
+void Game::InitTile()
+{
+	Grass1Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
+	Grass2Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass2.png");
+	Grass3Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass3.png");
+	Grass4Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass4.png");
+
+	RoadTile = Tile(ROAD, { 0,0,PIXEL_SIZE, PIXEL_SIZE }, "image/road.png");
 }
 
 void Game::InitMap()
@@ -29,11 +40,19 @@ void Game::InitMap()
 	map = new Tile * [rows];
 	for (int i = 0; i < rows; i++) map[i] = new Tile[columns];
 
-	for (int i = 0; i < rows; i++)
+	for (int i = 0; i < rows; ++i)
 	{
 		if (i >= rows - 2) //2 lane cuoi
 		{
 			//grass
+
+			for (int j = 0; j < columns; ++j)
+			{
+				//set tile
+				int rd = rand() % 4;
+				//set position
+				
+			}
 		}
 		else if (i == rows - 1 + l.FinishLane()) 
 		{
@@ -57,7 +76,7 @@ void Game::AddTile(int _row, ObjectType o)
 
 bool Game::isEndGame()
 {
-	return (gameState == GAME_OVER_GAME || score == l.noOfRoad);
+	return (gameState == GAME_OVER_GAME || score == l.FinishLane());
 }
 
 void Game::ChangeState(int state)

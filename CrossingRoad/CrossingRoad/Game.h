@@ -25,6 +25,7 @@ using namespace std;
 class Game
 {
 private:
+	Tile Grass1Tile, Grass2Tile, Grass3Tile, Grass4Tile, RoadTile;
 	int rows, columns;
 	int currentLevel;
 	Player* player;
@@ -50,7 +51,9 @@ public:
 	void Pause(HANDLE);
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
-	void Init();
+	//void Init();
+	void Init(string);
+	void InitTile();
 	void InitMap();
 	void AddObject(int _row, ObjectType o);
 	void AddTile(int _row, ObjectType o);
