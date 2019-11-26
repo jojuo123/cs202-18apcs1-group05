@@ -7,16 +7,7 @@ void Game::StartGame()
 	
 }
 
-void Game::Init(string chosenPath)
-{
-	gameState = GAME_IN_GAME;
-	score = 0;
-	player = new Player(0, { 3,5 }, chosenPath, "sound/csdn.wav", PLAYER, { 100,100,64,64 });
-	currentLevel = 1;
-	l = Level(currentLevel);
-	InitTile();
-	InitMap();
-}
+
 void Game::Init(string chosenPath, int level)
 {
 	gameState = GAME_IN_GAME;
