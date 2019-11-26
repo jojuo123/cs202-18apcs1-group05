@@ -222,8 +222,8 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 					break;
 				}
 				case (sf::Keyboard::Escape): {
-					this->chosenPath = path[sel];
-					SoundSel == 1 ? this->sound = 1 : this->sound = 0;
+					this->chosenPath = path[ImgSel];
+					this->sound = (SoundSel == 1) ?  true : false;
 					return sel;
 				}
 				}

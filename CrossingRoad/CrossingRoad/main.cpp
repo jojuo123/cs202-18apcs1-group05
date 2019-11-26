@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
 	Scene *sc = Scene::getInstance();
 	sc->Init();
 	sc->Execute();
