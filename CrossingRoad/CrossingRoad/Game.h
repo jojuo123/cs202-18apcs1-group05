@@ -52,8 +52,8 @@ public:
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	//void Init();
-	void Init(string);
-	void Init(string, int);
+	//void Init(string);
+	void Init(string chosenPath, int level =1);
 	void InitTile();
 	void InitMap();
 	void AddObject(int _row, ObjectType o);
