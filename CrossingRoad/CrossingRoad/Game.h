@@ -52,7 +52,8 @@ public:
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	//void Init();
-	void Init(string);
+	//void Init(string);
+	void Init(string chosenPath, int level =1);
 	void InitTile();
 	void InitMap();
 	void AddObject(int _row, ObjectType o);
@@ -60,6 +61,7 @@ public:
 	void InitMap(int, int); 
 	void Exit(int option);
 	bool isEndGame();
+	int getCurrentLevel() { return currentLevel; };
 	~Game()
 	{
 		//delete map;

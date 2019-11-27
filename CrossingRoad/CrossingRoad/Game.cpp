@@ -7,23 +7,23 @@ void Game::StartGame()
 	
 }
 
-void Game::Init(string chosenPath)
+
+void Game::Init(string chosenPath, int level)
 {
 	gameState = GAME_IN_GAME;
 	score = 0;
 	player = new Player(0, { 3,5 }, chosenPath, "sound/csdn.wav", PLAYER, { 100,100,64,64 });
-	currentLevel = 1;
+	currentLevel = level;
 	l = Level(currentLevel);
 	InitTile();
 	InitMap();
 }
-
 void Game::InitTile()
 {
 	Grass1Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
 	Grass2Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass2.png");
 	Grass3Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass3.png");
-	Grass4Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass4.png");
+	Grass4Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
 
 	RoadTile = Tile(ROAD, { 0,0,PIXEL_SIZE, PIXEL_SIZE }, "image/road.png");
 }

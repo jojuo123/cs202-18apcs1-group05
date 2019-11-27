@@ -23,9 +23,10 @@ using namespace std;
 class Menu
 {
 private:
-	bool sound;
+	bool sound = 1;
+	string chosenPath = "Image/skin1.png";
 	static const string path[5];
-	string chosenPath;
+	
 public:
 	int StartMenu(sf::RenderWindow &window, sf::Font &font);
 	int PauseMenu(sf::RenderWindow  &window, sf::Font &font);
