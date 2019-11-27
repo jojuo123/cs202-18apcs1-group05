@@ -20,6 +20,13 @@ void Scene::Draw(const Tile * tile)
 	sprite.setPosition(tile->position.left, tile->position.top);
 	window.draw(sprite);
 }
+void Scene::Draw(const Tile &tile)
+{
+	if (tile.texture == nullptr) return;
+	sf::Sprite sprite(*(tile.texture));
+	sprite.setPosition(tile.position.left, tile.position.top);
+	window.draw(sprite);
+}
 void Scene::Init() {
 	int sel = m.StartMenu(window, menuFont);
 	switch (sel)
