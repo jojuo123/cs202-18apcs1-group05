@@ -44,6 +44,7 @@ private:
 private:
 	void Draw(const Object *obj);
 	void Draw(const Tile *tile);
+	void Draw(const Tile&tile);
 public:
 	static Scene* getInstance() {
 		if (sc != NULL) return sc;
