@@ -20,10 +20,12 @@ void Game::Init(string chosenPath, int level)
 }
 void Game::InitTile()
 {
-	Grass1Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
-	Grass2Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass2.png");
-	Grass3Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass3.png");
-	Grass4Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
+	Grass1Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass.png");
+	Grass2Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass1.png");
+	Grass3Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass2.png");
+	Grass4Tile = Tile(GRASS, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/grass3.png");
+
+	FinishTile = Tile(FINISH, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/finish.png");
 
 	RoadTile = Tile(ROAD, { 0,0,PIXEL_SIZE, PIXEL_SIZE }, "image/road.png");
 }
@@ -37,26 +39,34 @@ void Game::InitMap()
 	std::reverse(obj.begin(), obj.end());
 
 	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE) + 1);
-	map = new Tile * [rows];
-	for (int i = 0; i < rows; i++) map[i] = new Tile[columns];
+	//Map = new Tile * [rows];
+	//for (int i = 0; i < rows; i++) Map[i] = new Tile[columns];
+
+	Map = vector<vector<Tile> >(rows, vector<Tile>(columns, Tile()));
 
 	for (int i = 0; i < rows; ++i)
 	{
-		if (i >= rows - 2) //2 lane cuoi
-		{
-			//grass
+		//if (i >= rows - 2) //2 lane cuoi
+		//{
+		//	//grass
 
-			for (int j = 0; j < columns; ++j)
-			{
-				//set tile
-				int rd = rand() % 4;
-				//set position
-				
-			}
-		}
-		else if (i == rows - 1 + l.FinishLane()) 
+		//	for (int j = 0; j < columns; ++j)
+		//	{
+		//		//set tile
+		//		int rd = rand() % 4;
+		//		//set position
+		//		
+		//	}
+		//}
+		//else 
+		if (i == rows - 1 + l.FinishLane()) 
 		{
 			//finish line
+			for (int j = 0; j < columns; ++j)
+			{
+				Map[i][j] = FinishTile;
+				Map[i][j].SetTopLeftCoord(i * PIXEL_SIZE, j * PIXEL_SIZE);
+			}
 		}
 		else
 		{
@@ -71,7 +81,30 @@ void Game::AddObject(int _row, ObjectType o)
 }
 
 void Game::AddTile(int _row, ObjectType o)
-{
+{	
+	if (o == NONE)
+	{
+		int rd = rand() % 4;
+		switch (rd) {
+		case 0:
+			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass1Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+			break;
+		case 1:
+			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass2Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+			break;
+		case 2:
+			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass3Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+			break;
+		case 3:
+			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass4Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+			break;
+		}
+	}
+	else 
+	{
+		for (int j = 0; j < columns; ++j)
+			Map[_row][j] = RoadTile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+	}
 }
 
 bool Game::isEndGame()

@@ -16,6 +16,7 @@ public:
 	friend class Scene;
 	Tile();
 	Tile(TileType _type, sf::Rect<objSize> _position, std::string texturePath);
+	//Tile(const Tile& other);
 
 	Tile& operator= (const Tile& other);
 

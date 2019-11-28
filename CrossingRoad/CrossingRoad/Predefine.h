@@ -38,7 +38,7 @@ using namespace std;
 //const int SCREEN_HEIGHT = 600;
 //sf::String SCREEN_TITLE = "Viet cong muon nam";
 
-enum TileType { GRASS, WATER, ROAD, RAIL, TREE };
+enum TileType { GRASS, WATER, ROAD, RAIL, TREE, FINISH };
 enum ObjectType { PLAYER, MOTOR, TRUCK, STICK, LAMP, TIGER, DINOSAUR, NONE };
 enum GameState { START, PLAY, EXITE, PAUSE, GAME_OVER, OUT_OF_GAME, CHOOSE_PLAYER };
 enum Direction { UP, DOWN, LEFT, RIGHT };
