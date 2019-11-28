@@ -12,11 +12,12 @@ void Game::Init(string chosenPath, int level)
 {
 	gameState = GAME_IN_GAME;
 	score = 0;
-	player = new Player(0, { 3,5 }, chosenPath, "sound/csdn.wav", PLAYER, { 100,100,64,64 });
+	
 	currentLevel = level;
 	l = Level(currentLevel);
 	InitTile();
 	InitMap();
+	player = new Player(0, { rows - 1, columns / 2 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2 - 1) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
 }
 void Game::InitTile()
 {
@@ -27,13 +28,13 @@ void Game::InitTile()
 
 	FinishTile = Tile(FINISH, { 0, 0, PIXEL_SIZE, PIXEL_SIZE }, "image/finish.png");
 
-	RoadTile = Tile(ROAD, { 0,0,PIXEL_SIZE, PIXEL_SIZE }, "image/road.png");
+	RoadTile = Tile(ROAD, { 0,0,PIXEL_SIZE, PIXEL_SIZE }, "image/Road.png");
 }
 
 void Game::InitMap()
 {
 	
-	rows = l.FinishLane() + 10;
+	rows = l.FinishLane() + 2;
 	vector<ObjectType> obj = l.getObstacle();
 	while (obj.size() < rows) obj.push_back(NONE);
 	std::reverse(obj.begin(), obj.end());
@@ -59,7 +60,7 @@ void Game::InitMap()
 		//	}
 		//}
 		//else 
-		if (i == rows - 1 + l.FinishLane()) 
+		if (i == rows - 1 - l.FinishLane()) 
 		{
 			//finish line
 			for (int j = 0; j < columns; ++j)
@@ -82,28 +83,31 @@ void Game::AddObject(int _row, ObjectType o)
 
 void Game::AddTile(int _row, ObjectType o)
 {	
-	if (o == NONE)
+	for (int j = 0; j < columns; ++j)
 	{
-		int rd = rand() % 4;
-		switch (rd) {
-		case 0:
-			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass1Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
-			break;
-		case 1:
-			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass2Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
-			break;
-		case 2:
-			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass3Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
-			break;
-		case 3:
-			for (int j = 0; j < columns; ++j) Map[_row][j] = Grass4Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
-			break;
+		if (o == NONE)
+		{
+			int rd = rand() % 4;
+			switch (rd)
+			{
+			case 0:
+				Map[_row][j] = Grass1Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+				break;
+			case 1:
+				Map[_row][j] = Grass2Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+				break;
+			case 2:
+				Map[_row][j] = Grass3Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+				break;
+			case 3:
+				Map[_row][j] = Grass4Tile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+				break;
+			}
 		}
-	}
-	else 
-	{
-		for (int j = 0; j < columns; ++j)
+		else
+		{
 			Map[_row][j] = RoadTile, Map[_row][j].SetTopLeftCoord(_row * PIXEL_SIZE, j * PIXEL_SIZE);
+		}
 	}
 }
 
