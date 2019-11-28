@@ -36,6 +36,9 @@ void Scene::Init() {
 		g = new Game();
 		//g->Init();
 		g->Init(m.chosenPathValue());
+		sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
+		sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+		window.setView(view);
 		break;
 	}
 	case (MENU_LOADGAME): {
@@ -74,6 +77,7 @@ void Scene::Init() {
 
 void Scene::Execute()
 {
+	
 	if (g == NULL) return;
 	//vector<vector<Tile> > Map = g->GetMap();
 	while (g != nullptr) {

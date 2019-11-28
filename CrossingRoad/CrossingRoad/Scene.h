@@ -36,7 +36,7 @@ private:
 		//g = Game::getInstance();
 		m = Menu();
 		//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
-		window.create(VideoMode(800, 600), "Viet cong muon nam");
+		window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Viet cong muon nam");
 		menuFont.loadFromFile("verdana.ttf");
 	}
 	

@@ -19,8 +19,8 @@ using namespace std;
 #define MENU_SETTING 2
 #define MENU_EXIT 3
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 832 //64x13
+#define SCREEN_HEIGHT 640 //64x10
 
 #define PLAYERINPUT_MOVEUP 30
 #define PLAYERINPUT_MOVEDOWN 04
