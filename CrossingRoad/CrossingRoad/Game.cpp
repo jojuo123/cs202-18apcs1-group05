@@ -17,7 +17,7 @@ void Game::Init(string chosenPath, int level)
 	l = Level(currentLevel);
 	InitTile();
 	InitMap();
-	player = new Player(0, { columns / 2, rows - 1 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2 - 1) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
+	player = new Player(0, { columns / 2, rows - 1 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
 }
 void Game::InitTile()
 {
@@ -39,7 +39,7 @@ void Game::InitMap()
 	while (obj.size() < rows) obj.push_back(NONE);
 	std::reverse(obj.begin(), obj.end());
 
-	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE) + 1);
+	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE));
 	//Map = new Tile * [rows];
 	//for (int i = 0; i < rows; i++) Map[i] = new Tile[columns];
 
