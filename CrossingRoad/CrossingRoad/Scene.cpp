@@ -75,6 +75,11 @@ void Scene::Init() {
 	}
 }
 
+void Scene::Update()
+{
+	UpdateCamera();
+}
+
 void Scene::Execute()
 {
 	
@@ -87,6 +92,7 @@ void Scene::Execute()
 			EndOfGame();
 			break;
 		}
+		Update();
 		Draw(g->Map);
 	}
 	//if (g == NULL) std::cerr << "g == nullptr";
@@ -111,31 +117,27 @@ void Scene::DrawMap(vector<vector<Tile> > &Map)
 
 void Scene::UpdateCamera()
 {
-	//1. Deduct lowest row appear on screen
+	//1. Deduct smallest row appear on screen (the top one)
 	//Camera view: lowestTileRow -> lowestTileRow + numRowOnScreen - 1
 	//NOTE: just access, call function later.
 	int numRowOnScreen = SCREEN_HEIGHT / PIXEL_SIZE;
-	int lowestTileRow;
-	if (g->player->coord.y + numRowOnScreen - 1 >= g->rows) {
-		lowestTileRow = g->rows - numRowOnScreen + 1;
-		if (lowestTileRow < 0) lowestTileRow = 0;
+	int currentRow = g->player->coord.y;
+
+	//2. DONOT SetTopLeftCoord those Tiles
+	//Set sf::View instead
+	sf::View view;
+	view.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	cerr << currentRow << " " << g->player->coord.x << endl;
+
+	if (0 <= currentRow && currentRow < numRowOnScreen) {
+		view.setCenter(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
 	else {
-		lowestTileRow = g->player->coord.y;
+		sf::IntRect rct = g->player->getPosition();
+		view.setCenter(SCREEN_WIDTH / 2, rct.top + rct.height - SCREEN_HEIGHT / 2);
 	}
-
-	//2. SetTopLeftCoord those Tiles
-	for (int i=0; i<g->rows; ++i)
-		if (lowestTileRow <= i && i <= lowestTileRow + numRowOnScreen - 1) {
-			int positiveRowPos = (i - lowestTileRow)*PIXEL_SIZE;
-			int rowTopPos = SCREEN_HEIGHT - positiveRowPos - PIXEL_SIZE;
-			for (int j = 0; j < g->columns; ++j)
-				g->Map[i][j].SetTopLeftCoord(rowTopPos, j*PIXEL_SIZE);
-		}
-		else {
-			for (int j = 0; j < g->columns; ++j)
-				g->Map[i][j].SetTopLeftCoord(-1000, -1000);
-		}
+	window.setView(view);
 }
 
 void Scene::HandleInput()

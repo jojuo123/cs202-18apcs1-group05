@@ -28,6 +28,7 @@ int Menu::StartMenu(sf::RenderWindow &window, sf::Font &font) {
 		db[i][1].setPosition(txtPos[i]);
 	}
 	int sel = 0;
+	window.setView(window.getDefaultView()); //SET DEFAULT VIEW BACK DUE TO GAME
 	while (window.isOpen()) {
 		sf::Event ev;
 		while (window.pollEvent(ev)) {
@@ -86,6 +87,7 @@ int Menu::PauseMenu(sf::RenderWindow  &window, sf::Font &font) {
 		db[i][1].setPosition(txtPos[i]);
 	}
 	int sel = 0;
+	window.setView(window.getDefaultView()); //SET DEFAULT VIEW BACK DUE TO GAME
 	while (window.isOpen()) {
 		sf::Event ev;
 		while (window.pollEvent(ev)) {

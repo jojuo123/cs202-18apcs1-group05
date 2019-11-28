@@ -24,7 +24,7 @@ class Menu
 {
 private:
 	bool sound = 1;
-	string chosenPath = "Image/skin1.png";
+	string chosenPath = "Image/player.png";
 	static const string path[5];
 	
 public:
