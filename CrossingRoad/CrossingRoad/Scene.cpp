@@ -93,6 +93,35 @@ void Scene::Draw()
 	window.display();
 }
 
+void Scene::UpdateCamera()
+{
+	//1. Deduct lowest row appear on screen
+	//Camera view: lowestTileRow -> lowestTileRow + numRowOnScreen - 1
+	//NOTE: just access, call function later.
+	int numRowOnScreen = SCREEN_HEIGHT / PIXEL_SIZE;
+	int lowestTileRow;
+	if (g->player->coord.y + numRowOnScreen - 1 >= g->rows) {
+		lowestTileRow = g->rows - numRowOnScreen + 1;
+		if (lowestTileRow < 0) lowestTileRow = 0;
+	}
+	else {
+		lowestTileRow = g->player->coord.y;
+	}
+
+	//2. SetTopLeftCoord those Tiles
+	for (int i=0; i<g->rows; ++i)
+		if (lowestTileRow <= i && i <= lowestTileRow + numRowOnScreen - 1) {
+			int positiveRowPos = (i - lowestTileRow)*PIXEL_SIZE;
+			int rowTopPos = SCREEN_HEIGHT - positiveRowPos - PIXEL_SIZE;
+			for (int j = 0; j < g->columns; ++j)
+				g->map[i][j].SetTopLeftCoord(rowTopPos, j*PIXEL_SIZE);
+		}
+		else {
+			for (int j = 0; j < g->columns; ++j)
+				g->map[i][j].SetTopLeftCoord(-1000, -1000);
+		}
+}
+
 void Scene::HandleInput()
 {
 	using namespace sf;
