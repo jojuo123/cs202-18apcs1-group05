@@ -1,7 +1,7 @@
 #include "Object.h"
 
 Object::Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos):
-	coord(_c), speed(_s), type(_t), position(_pos)
+	speed(_s), coord(_c), type(_t), position(_pos)
 {
 	using namespace std;
 	texture = new sf::Texture;

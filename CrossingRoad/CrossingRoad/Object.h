@@ -19,13 +19,13 @@ protected:
 	sf::Texture* texture;
 	bool isMoving = false;
 	ObjectType type;
-	Coord coord;
+	Coord coord; //LET IT MOVE TO PLAYER.h. In any case, rebuild it here :<
 	sf::SoundBuffer buffer;
 	Direction dir; //<- What is this?
 	//bool isDead = false;
 	//shape
 public:
-	Object() { position = { 0, 0, 0, 0 }; speed = 0; coord = Coord(0, 0); texture = nullptr; }
+	Object() { position = { 0, 0, 0, 0 }; speed = 0; texture = nullptr; }
 	Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos);
 	//virtual void Move(Coord);
 	//virtual void Move(objSize, objSize); //relative objSizes for moves

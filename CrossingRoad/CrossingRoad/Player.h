@@ -15,12 +15,14 @@ protected:
 	std::string name;
 	//int state;
 	bool isDead;
+	Coord coord; //coord.y is row, coord.x is column in Tile**map, numbered from 0
 public:
 	Player() : Object() { name = ""; }
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, soundPath, _t, _pos) {}
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos, std::string _name) : Object(_s, _c, texturePath, soundPath, _t, _pos), name(_name) {}
 	bool isHit(const Obstacle* &obs);
 	bool inRange();
+	void Move(Direction dir, objSize numPixel);
 	void playSound();
 	friend class Game;
 	friend class Scene;
