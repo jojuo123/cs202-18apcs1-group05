@@ -74,6 +74,8 @@ void Scene::Init() {
 
 void Scene::Execute()
 {
+	if (g == NULL) return;
+	//vector<vector<Tile> > Map = g->GetMap();
 	while (g != nullptr) {
 		HandleInput();
 		if (g->isEndGame())
@@ -81,16 +83,26 @@ void Scene::Execute()
 			EndOfGame();
 			break;
 		}
-		Draw();
+		Draw(g->Map);
 	}
+	//if (g == NULL) std::cerr << "g == nullptr";
 }
 
-void Scene::Draw()
+void Scene::Draw(vector<vector<Tile> > &Map)
 {
 	window.clear();
 	//Draw all of g (Tiles, obstacles beforehand)
+	DrawMap(Map);
+
 	Draw(g->player);
 	window.display();
+}
+
+void Scene::DrawMap(vector<vector<Tile> > &Map)
+{
+	for (int i = 0; i < Map.size(); ++i)
+		for (int j = 0; j < Map[i].size(); ++j)
+			Draw(Map[i][j]);
 }
 
 void Scene::UpdateCamera()
@@ -114,11 +126,11 @@ void Scene::UpdateCamera()
 			int positiveRowPos = (i - lowestTileRow)*PIXEL_SIZE;
 			int rowTopPos = SCREEN_HEIGHT - positiveRowPos - PIXEL_SIZE;
 			for (int j = 0; j < g->columns; ++j)
-				g->map[i][j].SetTopLeftCoord(rowTopPos, j*PIXEL_SIZE);
+				g->Map[i][j].SetTopLeftCoord(rowTopPos, j*PIXEL_SIZE);
 		}
 		else {
 			for (int j = 0; j < g->columns; ++j)
-				g->map[i][j].SetTopLeftCoord(-1000, -1000);
+				g->Map[i][j].SetTopLeftCoord(-1000, -1000);
 		}
 }
 

@@ -55,7 +55,8 @@ public:
 	void Update();
 	void Execute();
 	void Destroy();
-	void Draw();
+	void Draw(vector<vector<Tile> > &Map);
+	void DrawMap(vector<vector<Tile> > &Map);
 	void Pause();
 	void UpdateCamera();
 	void HandleInput();

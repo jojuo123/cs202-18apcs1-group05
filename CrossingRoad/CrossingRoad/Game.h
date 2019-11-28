@@ -25,12 +25,13 @@ using namespace std;
 class Game
 {
 private:
-	Tile Grass1Tile, Grass2Tile, Grass3Tile, Grass4Tile, RoadTile;
+	Tile Grass1Tile, Grass2Tile, Grass3Tile, Grass4Tile, RoadTile, FinishTile;
 	int rows, columns;
 	int currentLevel;
 	Player* player;
 	deque<Object*> dqOb;
-	Tile** map;
+	//Tile** map;
+	vector<vector<Tile> > Map;
 	Obstacle* dino, * truct, * tiger, * motor;
 	Level l;
 	int FPS;
@@ -58,16 +59,20 @@ public:
 	void InitMap();
 	void AddObject(int _row, ObjectType o);
 	void AddTile(int _row, ObjectType o);
-	void InitMap(int, int); 
+	//void InitMap(int, int); 
 	void Exit(int option);
+
+	vector<vector<Tile> > GetMap() { return Map; }
+
 	bool isEndGame();
+
 	int getCurrentLevel() { return currentLevel; };
 	~Game()
 	{
 		//delete map;
-		for (int i = 0; i < rows; i++)
+		/*for (int i = 0; i < rows; i++)
 			delete[] map[i];
-		delete[] map;
+		delete[] map;*/
 		delete player;
 		//delete elements in deque
 		//delete object

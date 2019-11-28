@@ -2,7 +2,8 @@
 #include <Shlwapi.h>
 #include <iostream>
 
-Tile::Tile() : type(TREE), position({ 0,0,0,0 }), texture(nullptr) {}
+Tile::Tile() : type(GRASS), position({ 0,0,0,0 }), texture(nullptr) {}
+
 Tile::Tile(TileType type, sf::Rect<objSize> position, std::string imgPath) : type(type),
 position(position) {
 	using namespace std;
@@ -14,6 +15,17 @@ position(position) {
 		return;
 	}
 }
+
+//Tile::Tile(const Tile& other)
+//{
+//	//if (&other == this) return;
+//	this->position = other.position;
+//	this->type = other.type;
+//	//delete texture;
+//	using namespace sf;
+//	texture = new Texture();
+//	(*texture) = (*(other.texture));
+//}
 
 Tile::~Tile()
 {
