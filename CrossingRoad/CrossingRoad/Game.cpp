@@ -17,7 +17,7 @@ void Game::Init(string chosenPath, int level)
 	l = Level(currentLevel);
 	InitTile();
 	InitMap();
-	player = new Player(0, { rows - 1, columns / 2 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2 - 1) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
+	player = new Player(0, { columns / 2, rows - 1 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
 }
 void Game::InitTile()
 {
@@ -39,7 +39,7 @@ void Game::InitMap()
 	while (obj.size() < rows) obj.push_back(NONE);
 	std::reverse(obj.begin(), obj.end());
 
-	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE) + 1);
+	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE));
 	//Map = new Tile * [rows];
 	//for (int i = 0; i < rows; i++) Map[i] = new Tile[columns];
 
@@ -123,21 +123,26 @@ void Game::ChangeState(int state)
 
 void Game::HandlePlayerInput(int input)
 {
+	Coord c = player->coord;
 	switch (input) {
 	case PLAYERINPUT_MOVEDOWN: {
-		player->Move(DOWN, 64);
+		if (c.y+1<rows)
+			player->Move(DOWN, 64);
 		break;
 	}
 	case PLAYERINPUT_MOVELEFT: {
-		player->Move(LEFT, 64);
+		if (c.x-1>=0)
+			player->Move(LEFT, 64);
 		break;
 	}
 	case PLAYERINPUT_MOVEUP: {
-		player->Move(UP, 64);
+		if (c.y-1>=0)
+			player->Move(UP, 64);
 		break;
 	}
 	case PLAYERINPUT_MOVERIGHT: {
-		player->Move(RIGHT, 64);
+		if (c.x+1<columns)
+			player->Move(RIGHT, 64);
 		break;
 	}
 	}
