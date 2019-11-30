@@ -28,6 +28,10 @@ private:
 	static const int levelListTruckLane[5];
 	static const int levelListMotoLane[5];
 	static const int levelListGrassLane[5];
+	static const float levelListDinoSpeed[5];
+	static const float levelListTigSpeed[5];
+	static const float levelListTruckSpeed[5];
+	static const float levelListMotoSpeed[5];
 	//2 row dau la grass
 	//row cuoi grass
 	
@@ -37,6 +41,10 @@ public:
 	Level(int id) : LevelId(id) {}
 	vector<ObjectType> getObstacle(); //random de tra ve list cac obs theo row
 	int FinishLane() { return levelListRoad[LevelId - 1]; }
+	float DinoSpeed() { return levelListDinoSpeed[LevelId - 1]; }
+	float TigerSpeed() { return levelListTigSpeed[LevelId - 1]; }
+	float TruckSpeed() { return levelListTruckSpeed[LevelId - 1]; }
+	float MotorSpeed() { return levelListMotoSpeed[LevelId - 1]; }
 	friend class Scene;
 	friend class Game;
 };

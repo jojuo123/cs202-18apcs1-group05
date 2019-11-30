@@ -87,7 +87,7 @@ void Scene::Execute()
 	//vector<vector<Tile> > Map = g->GetMap();
 	while (g != nullptr) {
 		HandleInput();
-		if (g->isEndGame())
+		if (g == NULL || g->isEndGame())
 		{
 			EndOfGame();
 			break;
