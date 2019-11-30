@@ -77,6 +77,7 @@ void Scene::Init() {
 
 void Scene::Update()
 {
+	g->UpdateObstaclesPosition();
 	UpdateCamera();
 }
 

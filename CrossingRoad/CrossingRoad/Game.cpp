@@ -126,7 +126,7 @@ void Game::AddTile(int _row, ObjectType o)
 
 bool Game::isEndGame()
 {
-	return (gameState == GAME_OVER_GAME || player->coord.y >= rows - 1 - l.FinishLane());
+	return (gameState == GAME_OVER_GAME || player->coord.y <= rows - 1 - l.FinishLane());
 }
 
 void Game::ChangeState(int state)
@@ -159,4 +159,18 @@ void Game::HandlePlayerInput(int input)
 		break;
 	}
 	}
+}
+
+void Game::UpdateObstaclesPosition()
+{
+	deque<Object*> newdqOb;
+	while (!dqOb.empty()) {
+		Object *p = dqOb.front(); dqOb.pop_front();
+		p->UpdatePosition();
+		if (p->isOutOfScreen()) { //p is out of screen
+			delete p;
+		}
+		else newdqOb.push_back(p);
+	}
+	this->dqOb = newdqOb;
 }
