@@ -77,6 +77,7 @@ void Scene::Init() {
 
 void Scene::Update()
 {
+	g->UpdateObstaclesPosition();
 	UpdateCamera();
 }
 
@@ -103,7 +104,7 @@ void Scene::Draw(vector<vector<Tile> > &Map)
 	window.clear();
 	//Draw all of g (Tiles, obstacles beforehand)
 	DrawMap(Map);
-
+	DrawObject(g->dqOb);
 	Draw(g->player);
 	window.display();
 }
@@ -114,7 +115,21 @@ void Scene::DrawMap(vector<vector<Tile> > &Map)
 		for (int j = 0; j < Map[i].size(); ++j)
 			Draw(Map[i][j]);
 }
+void Scene::DrawObject(deque<Object*> dqOb)
+{
+	deque<Object*> newdqOb;
+	while (!dqOb.empty()) {
+		Object *p = dqOb.front(); dqOb.pop_front();
+		if (p->texture == nullptr) return;
 
+		sf::Sprite sprite(*(p->texture));
+		sprite.setPosition(p->position.left, p->position.top);
+		window.draw(sprite);
+
+		newdqOb.push_back(p);
+	}
+	dqOb = newdqOb;
+}
 void Scene::UpdateCamera()
 {
 	//1. Deduct smallest row appear on screen (the top one)

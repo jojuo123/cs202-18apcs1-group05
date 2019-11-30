@@ -45,6 +45,7 @@ private:
 	void Draw(const Object *obj);
 	void Draw(const Tile *tile);
 	void Draw(const Tile&tile);
+	void UpdateCamera();
 public:
 	static Scene* getInstance() {
 		if (sc != NULL) return sc;
@@ -57,8 +58,9 @@ public:
 	void Destroy();
 	void Draw(vector<vector<Tile> > &Map);
 	void DrawMap(vector<vector<Tile> > &Map);
+	void DrawObject(deque<Object*> dqOb);
 	void Pause();
-	void UpdateCamera();
+	
 	void HandleInput();
 	void Start()
 	{

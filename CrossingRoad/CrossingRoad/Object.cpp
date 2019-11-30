@@ -15,6 +15,11 @@ Object::Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath,
 	}
 }
 
+void Object::setDirection(Direction _dir)
+{
+	this->dir = _dir;
+}
+
 void Object::Move(Direction dir, objSize numPixel)
 {
 	switch (dir) {
@@ -42,4 +47,14 @@ void Object::playSound()
 	sf::Sound sound;
 	sound.setBuffer(buffer);
 	sound.play();
+}
+bool Object::isOutOfScreen()
+{
+	sf::IntRect screenRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	return !(this->position.intersects(screenRect));
+}
+
+void Object::UpdatePosition()
+{
+
 }

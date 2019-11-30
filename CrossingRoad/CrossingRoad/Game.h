@@ -32,7 +32,7 @@ private:
 	deque<Object*> dqOb;
 	//Tile** map;
 	vector<vector<Tile> > Map;
-	Obstacle* dino, * truct, * tiger, * motor;
+	Obstacle* dino, * truck, * tiger, * motor;
 	Level l;
 	int FPS;
 	int currentRoad;
