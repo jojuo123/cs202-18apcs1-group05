@@ -2,6 +2,19 @@
 
 //Game* Game::instance = nullptr;
 
+Obstacle* Obstacle::Create(ObjectType type, unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos)
+{
+	if (type == DINOSAUR)
+		return new Dinosaur(_s, _c, texturePath, soundPath, _t, _pos);
+	else if (type == TRUCK)
+		return new Truck(_s, _c, texturePath, soundPath, _t, _pos);
+	else if (type == MOTOR)
+		return new Motorbike(_s, _c, texturePath, soundPath, _t, _pos);
+	else if (type == TIGER)
+		return new Tiger(_s, _c, texturePath, soundPath, _t, _pos);
+	else return nullptr;
+}
+
 void Game::StartGame()
 {
 	
@@ -113,7 +126,7 @@ void Game::AddTile(int _row, ObjectType o)
 
 bool Game::isEndGame()
 {
-	return (gameState == GAME_OVER_GAME || score == l.FinishLane());
+	return (gameState == GAME_OVER_GAME || player->coord.y >= rows - 1 - l.FinishLane());
 }
 
 void Game::ChangeState(int state)

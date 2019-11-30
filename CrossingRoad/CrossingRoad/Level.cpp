@@ -9,6 +9,11 @@ const int Level::levelListTruckLane[5] = { 2,3,0,22,0 };
 const int Level::levelListMotoLane[5] = { 2,3,17,0,0 };
 const int Level::levelListGrassLane[5] = { 4,3,3,3,3 };
 
+const float Level::levelListDinoSpeed[5] = { 20, 32, 40, 55, 64 };
+const float Level::levelListTigSpeed[5] = { 15, 30, 36, 60, 62 };
+const float Level::levelListTruckSpeed[5] = { 40, 45, 50, 60, 65 };
+const float Level::levelListMotoSpeed[5] = { 30, 44, 55, 61, 70 };
+
 vector<ObjectType> Level::getObstacle()
 {
 	vector<ObjectType> rowLane;
