@@ -33,8 +33,8 @@ public:
 	virtual void Move(Direction dir, objSize numPixel);
 	sf::Rect<objSize> getPosition() const { return position; }
 	void playSound();
-	virtual void UpdatePosition();
-	bool isOutOfScreen();
+	//virtual void UpdatePosition();
+	//bool isOutOfScreen();
 	friend class Scene;
 	virtual ~Object()
 	{
