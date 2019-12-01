@@ -15,6 +15,11 @@ Object::Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath,
 	}
 }
 
+void Object::setDirection(Direction _dir)
+{
+	this->dir = _dir;
+}
+
 void Object::Move(Direction dir, objSize numPixel)
 {
 	switch (dir) {

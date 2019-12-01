@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+
 using namespace std;
 Scene* Scene::sc = nullptr;
 void Scene::Draw(const Object * obj)
@@ -88,13 +89,44 @@ void Scene::Execute()
 	//vector<vector<Tile> > Map = g->GetMap();
 	while (g != nullptr) {
 		HandleInput();
+		Update();
+		Draw(g->Map);
+		checkCollision();
 		if (g == NULL || g->isEndGame())
 		{
 			EndOfGame();
 			break;
 		}
-		Update();
-		Draw(g->Map);
+		else if (g->isEndGameByCollision())
+		{
+			EndOfGame();
+			
+			sf::Sprite * sp = m.GameOvermenu();
+			window.clear();
+			window.draw(*sp);
+			window.display();
+			sf::Event event;
+			//wait for enter or escape pressed
+			while (window.isOpen())
+			{
+				bool pause = 0;
+				while (window.pollEvent(event)) {
+					if (event.type == sf::Event::KeyReleased) {
+						if (event.key.code == sf::Keyboard::Enter || event.key.code == sf::Keyboard::Escape)
+							pause = 1;
+					};	
+				}
+				if (pause == 1)
+					break;
+			}
+			delete sp->getTexture();
+			delete sp;
+			//start new game
+			this->Init();
+			this->Execute();
+			return;
+		}
+		
 	}
 	//if (g == NULL) std::cerr << "g == nullptr";
 }
@@ -104,7 +136,7 @@ void Scene::Draw(vector<vector<Tile> > &Map)
 	window.clear();
 	//Draw all of g (Tiles, obstacles beforehand)
 	DrawMap(Map);
-
+	DrawObject(g->dqOb);
 	Draw(g->player);
 	window.display();
 }
@@ -115,7 +147,21 @@ void Scene::DrawMap(vector<vector<Tile> > &Map)
 		for (int j = 0; j < Map[i].size(); ++j)
 			Draw(Map[i][j]);
 }
+void Scene::DrawObject(deque<Object*> dqOb)
+{
+	deque<Object*> newdqOb;
+	while (!dqOb.empty()) {
+		Object *p = dqOb.front(); dqOb.pop_front();
+		if (p->texture == nullptr) return;
 
+		sf::Sprite sprite(*(p->texture));
+		sprite.setPosition(p->position.left, p->position.top);
+		window.draw(sprite);
+
+		newdqOb.push_back(p);
+	}
+	dqOb = newdqOb;
+}
 void Scene::UpdateCamera()
 {
 	//1. Deduct smallest row appear on screen (the top one)
@@ -194,4 +240,20 @@ void Scene::HandleInput()
 			g->ChangeState(GAME_OVER_GAME);	
 		}
 	}
+}
+void Scene::checkCollision()
+{
+	deque<Object*> dq = this->g->dqOb;
+	deque<Object*> newdqOb;
+	while (!dq.empty()) {
+		Object *p = dq.front(); dq.pop_front();
+		bool isHit = this->g->player->isHit(p);	
+		if (isHit == 1)
+		{
+			g->ChangeState(GAME_OVER_COLLISION_GAME);			
+			break;
+		}
+		newdqOb.push_back(p);
+	}
+	this->g->dqOb = newdqOb;
 }

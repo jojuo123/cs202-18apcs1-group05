@@ -27,11 +27,14 @@ protected:
 public:
 	Object() { position = { 0, 0, 0, 0 }; speed = 0; texture = nullptr; }
 	Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos);
+	void setDirection(Direction _dir);
 	//virtual void Move(Coord);
 	//virtual void Move(objSize, objSize); //relative objSizes for moves
 	virtual void Move(Direction dir, objSize numPixel);
 	sf::Rect<objSize> getPosition() const { return position; }
 	void playSound();
+	virtual void UpdatePosition();
+	bool isOutOfScreen();
 	friend class Scene;
 	virtual ~Object()
 	{

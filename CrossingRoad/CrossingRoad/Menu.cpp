@@ -268,5 +268,23 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 	return 0;
 }
 
+sf::Sprite* Menu::GameOvermenu()
+{
+	sf::Texture *texture = new sf::Texture;
+	if (!texture->loadFromFile(gameOverScreenPath))
+	{
+		cerr<< " cant load game over screen image";
+	}
+
+	sf::Sprite* sp = new sf::Sprite;
+	sp->setTexture(*texture);
+	sf::Vector2u v = texture->getSize();
+	float scaleX = SCREEN_WIDTH / (float)v.x;
+	float scaleY = SCREEN_HEIGHT / (float)v.y;
+	sp->setScale(scaleX, scaleY);
+	sp->setPosition(0, 0);
+	return sp;
+}
+
 
 

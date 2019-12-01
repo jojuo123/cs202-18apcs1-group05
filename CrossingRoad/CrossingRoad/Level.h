@@ -1,15 +1,8 @@
 #ifndef _LEVEL_H_
 #define _LEVEL_H_
 
-#include "Object.h"
+
 #include "Predefine.h"
-#include "Obstacle.h"
-#include "Vehicle.h"
-#include "Animal.h"
-#include "Dinosaur.h"
-#include "Truck.h"
-#include "Motorbike.h"
-#include "Tiger.h"
 #include <vector>
 
 class Level

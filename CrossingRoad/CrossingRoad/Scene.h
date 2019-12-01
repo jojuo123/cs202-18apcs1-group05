@@ -54,10 +54,12 @@ public:
 	}
 	void Init();
 	void Update();
+	void checkCollision();
 	void Execute();
 	void Destroy();
 	void Draw(vector<vector<Tile> > &Map);
 	void DrawMap(vector<vector<Tile> > &Map);
+	void DrawObject(deque<Object*> dqOb);
 	void Pause();
 	void HandleInput();
 	void Start()
@@ -70,6 +72,7 @@ public:
 		delete g;
 		g = NULL;
 	}
+	
 	//void InitMap();
 	void LevelLoader();
 	~Scene() {

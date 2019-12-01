@@ -30,7 +30,7 @@ using namespace std;
 #define GAME_IN_GAME 1
 #define GAME_PAUSE_GAME 2
 #define GAME_OVER_GAME 3
-
+#define GAME_OVER_COLLISION_GAME 4
 
 #define PIXEL_SIZE 64
 

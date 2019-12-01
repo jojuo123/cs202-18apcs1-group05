@@ -25,12 +25,14 @@ class Menu
 private:
 	bool sound = 1;
 	string chosenPath = "Image/player.png";
+	string gameOverScreenPath = "Image/game_over.jpg";
 	static const string path[5];
 	
 public:
 	int StartMenu(sf::RenderWindow &window, sf::Font &font);
 	int PauseMenu(sf::RenderWindow  &window, sf::Font &font);
 	int SettingMenu(sf::RenderWindow &window, sf::Font &font);
+	sf::Sprite *GameOvermenu();
 	string chosenPathValue() { return chosenPath; }
 	bool soundValue() { return sound;  }
 };

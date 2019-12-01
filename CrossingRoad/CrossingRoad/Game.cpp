@@ -2,16 +2,16 @@
 
 //Game* Game::instance = nullptr;
 
-Obstacle* Obstacle::Create(ObjectType type, unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos)
+Obstacle* Obstacle::Create(ObjectType type, unitPerSecond _s, Coord _c, string texturePath, string soundPath, sf::Rect<objSize> _pos)
 {
 	if (type == DINOSAUR)
-		return new Dinosaur(_s, _c, texturePath, soundPath, _t, _pos);
+		return new Dinosaur(_s, _c, texturePath, soundPath, type, _pos);
 	else if (type == TRUCK)
-		return new Truck(_s, _c, texturePath, soundPath, _t, _pos);
+		return new Truck(_s, _c, texturePath, soundPath, type, _pos);
 	else if (type == MOTOR)
-		return new Motorbike(_s, _c, texturePath, soundPath, _t, _pos);
+		return new Motorbike(_s, _c, texturePath, soundPath, type, _pos);
 	else if (type == TIGER)
-		return new Tiger(_s, _c, texturePath, soundPath, _t, _pos);
+		return new Tiger(_s, _c, texturePath, soundPath, type, _pos);
 	else return nullptr;
 }
 
@@ -92,7 +92,51 @@ void Game::InitMap()
 
 void Game::AddObject(int _row, ObjectType o)
 {
+	int col= rand() % 2;
+	Coord temp;
+	Direction dir;
+	if (col == 0)
+	{
+		dir = RIGHT;
+		temp.x = 0;
+		temp.y = _row;
+
+	}
+	else if (col == 1)
+	{
+		dir = LEFT;
+		col = columns - 2;//11
+		temp.x = columns;
+		temp.y = _row;
+	}
+	
+	Obstacle *obs;
+	switch (o)
+	{
+	case DINOSAUR:
+		obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs->setDirection(dir);
+		dqOb.push_front(obs);
+		break; 
+	case TIGER:
+		obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs->setDirection(dir);
+		dqOb.push_back(obs);
+		break;
+	case MOTOR:
+		obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs->setDirection(dir);
+		dqOb.push_back(obs);
+		break;
+	case TRUCK:
+		obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs->setDirection(dir);
+		dqOb.push_back(obs);
+		break;
+	}
+	
 }
+
 
 void Game::AddTile(int _row, ObjectType o)
 {	
@@ -128,7 +172,10 @@ bool Game::isEndGame()
 {
 	return (gameState == GAME_OVER_GAME || player->coord.y <= rows - 1 - l.FinishLane());
 }
-
+bool Game::isEndGameByCollision()
+{
+	return (gameState == GAME_OVER_COLLISION_GAME);
+}
 void Game::ChangeState(int state)
 {
 	gameState = state;
