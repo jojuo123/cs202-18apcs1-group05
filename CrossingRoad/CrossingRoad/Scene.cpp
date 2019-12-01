@@ -43,6 +43,7 @@ void Scene::Init() {
 		break;
 	}
 	case (MENU_LOADGAME): {
+		//window.setFramerateLimit(60);
 		int savedLevel=-1;
 		ifstream fin("SavedLevel.txt", ifstream::in);
 		if (fin.is_open())
@@ -51,8 +52,12 @@ void Scene::Init() {
 			fin.close();
 			if (savedLevel != -1)
 			{
+				window.setFramerateLimit(60);
 				g = new Game();
 				g->Init(m.chosenPathValue(), savedLevel);
+				sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
+				sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+				window.setView(view);
 			}
 			else
 			{
