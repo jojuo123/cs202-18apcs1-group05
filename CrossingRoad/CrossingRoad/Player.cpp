@@ -1,7 +1,7 @@
 #include "Player.h"
 
-bool Player::isHit(const Obstacle* &obs) {
-	return position.intersects(obs->getPosition());
+bool Player::isHit(Object *&obj) {
+	return position.intersects(obj->getPosition());
 }
 
 void Player::Move(Direction dir, objSize numPixel)

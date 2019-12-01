@@ -46,6 +46,7 @@ private:
 	void Draw(const Tile *tile);
 	void Draw(const Tile&tile);
 	void UpdateCamera();
+
 public:
 	static Scene* getInstance() {
 		if (sc != NULL) return sc;
@@ -54,6 +55,7 @@ public:
 	}
 	void Init();
 	void Update();
+	void checkCollision();
 	void Execute();
 	void Destroy();
 	void Draw(vector<vector<Tile> > &Map);
@@ -72,6 +74,7 @@ public:
 		delete g;
 		g = NULL;
 	}
+	
 	//void InitMap();
 	void LevelLoader();
 	~Scene() {

@@ -172,7 +172,10 @@ bool Game::isEndGame()
 {
 	return (gameState == GAME_OVER_GAME || player->coord.y <= rows - 1 - l.FinishLane());
 }
-
+bool Game::isEndGameByCollision()
+{
+	return (gameState == GAME_OVER_COLLISION_GAME);
+}
 void Game::ChangeState(int state)
 {
 	gameState = state;

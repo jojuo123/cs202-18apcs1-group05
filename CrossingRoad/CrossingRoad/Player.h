@@ -20,7 +20,7 @@ public:
 	Player() : Object() { name = ""; }
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, soundPath, _t, _pos), coord(_c) {}
 	Player(unitPerSecond _s, Coord _c, string texturePath, string soundPath, ObjectType _t, sf::Rect<objSize> _pos, std::string _name) : Object(_s, _c, texturePath, soundPath, _t, _pos), name(_name), coord(_c) {}
-	bool isHit(const Obstacle* &obs);
+	bool isHit(Object * &obs);
 	bool inRange();
 	void Move(Direction dir, objSize numPixel);
 	void playSound();
