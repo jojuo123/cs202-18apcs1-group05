@@ -48,6 +48,7 @@ void Object::playSound()
 	sound.setBuffer(buffer);
 	sound.play();
 }
+
 bool Object::isOutOfScreen()
 {
 	sf::IntRect screenRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

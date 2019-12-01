@@ -6,4 +6,4 @@ void Obstacle::UpdatePosition() {
 	int deltaS = round(sign * t * this->speed);
 	this->position.left += deltaS;
 	clock.restart();
-};
+}

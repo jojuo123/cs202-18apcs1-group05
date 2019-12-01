@@ -207,6 +207,7 @@ void Game::HandlePlayerInput(int input)
 	}
 	}
 }
+
 void Game::UpdateObstaclesPosition()
 {
 	deque<Object*> newdqOb;

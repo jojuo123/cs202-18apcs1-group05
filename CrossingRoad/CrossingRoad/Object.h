@@ -40,7 +40,8 @@ public:
 	{
 		delete texture;
 	}
-	
+	virtual void UpdatePosition();
+	bool isOutOfScreen();
 };
 
 #endif // !_OBJECT_H_
