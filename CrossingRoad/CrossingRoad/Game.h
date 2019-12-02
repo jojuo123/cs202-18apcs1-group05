@@ -30,6 +30,7 @@ private:
 	int currentLevel;
 	Player* player;
 	vector<deque<Object*> > dqOb;
+	vector<int>  spaceObs;
 	//Tile** map;
 	vector<vector<Tile> > Map;
 	Obstacle* dino, * truck, * tiger, * motor;
@@ -52,6 +53,7 @@ public:
 	void Pause(HANDLE);
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
+	void generateObject();
 	//void Init();
 	//void Init(string);
 	void Init(string chosenPath, int level =1);

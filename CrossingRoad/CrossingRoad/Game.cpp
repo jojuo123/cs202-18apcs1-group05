@@ -93,47 +93,50 @@ void Game::InitMap()
 
 void Game::AddObject(int _row, ObjectType o)
 {
-	int col = rand() % columns;
-	Coord temp;
-	Direction dir;
-	if (col <6 )
+	if (0 != NONE)
 	{
-		dir = RIGHT;
-		temp.x = col;
-		temp.y = _row;
+		int col = rand() % columns;
+		Coord temp;
+		Direction dir;
+		if (col < 6)
+		{
+			dir = RIGHT;
+			temp.x = col;
+			temp.y = _row;
+		}
+		else if (col >= 6)
+		{
+			dir = LEFT;
+			temp.x = col;
+			temp.y = _row;
+		}
+		spaceObs.push_back(rand() % (3 - 1+ 1) + 1);
+		Obstacle *obs;
+		switch (o)
+		{
+		case DINOSAUR:
+			obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,2 * PIXEL_SIZE, PIXEL_SIZE });
+			obs->setDirection(dir);
+			dqOb[_row].push_front(obs);
+			break;
+		case TIGER:
+			obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2 * PIXEL_SIZE, PIXEL_SIZE });
+			obs->setDirection(dir);
+			dqOb[_row].push_front(obs);
+			break;
+		case MOTOR:
+			obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			obs->setDirection(dir);
+			dqOb[_row].push_front(obs);
+			break;
+		case TRUCK:
+			obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			obs->setDirection(dir);
+			dqOb[_row].push_front(obs);
+			break;
+		}
 	}
-	else if (col >= 6)
-	{
-		dir = LEFT;
-		temp.x = col;
-		temp.y = _row;
-	}
-	
-	Obstacle *obs;
-	switch (o)
-	{
-	case DINOSAUR:
-		obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,2 * PIXEL_SIZE, PIXEL_SIZE });
-		obs->setDirection(dir);
-		dqOb[_row].push_front(obs);
-		break; 
-	case TIGER:
-		obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2*PIXEL_SIZE, PIXEL_SIZE });
-		obs->setDirection(dir);
-		dqOb[_row].push_back(obs);
-		break;
-	case MOTOR:
-		obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
-		obs->setDirection(dir);
-		dqOb[_row].push_back(obs);
-		break;
-	case TRUCK:
-		obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
-		obs->setDirection(dir);
-		dqOb[_row].push_back(obs);
-		break;
-	}
-	
+	else spaceObs.push_back(-1);
 }
 
 
@@ -224,5 +227,24 @@ void Game::UpdateObstaclesPosition()
 			else newdqOb.push_back(p);
 		}
 		dq = newdqOb;
+	}
+}
+void Game::generateObject()
+{
+	for (int row = 0; row < this->dqOb.size(); ++row)
+	{
+		if (!dqOb[row].empty())
+		{
+			Object* lastObj = dqOb[row].back();
+			if (!lastObj->isOutOfScreen())
+			{
+				Object * newLastObj = new Object;
+				*newLastObj = *lastObj;
+				sf::Rect<objSize> position;
+				position.left = lastObj->getPosition().left - spaceObs[row] * PIXEL_SIZE;
+				newLastObj->setPosition(position);
+				dqOb[row].push_back(newLastObj);
+			}
+		}
 	}
 }

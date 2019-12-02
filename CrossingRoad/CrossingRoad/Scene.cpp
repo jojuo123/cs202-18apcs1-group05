@@ -83,6 +83,7 @@ void Scene::Init() {
 void Scene::Update()
 {
 	g->UpdateObstaclesPosition();
+	g->generateObject();
 	UpdateCamera();
 }
 
