@@ -55,6 +55,21 @@ bool Object::isOutOfScreen()
 	return !(this->position.intersects(screenRect));
 }
 
+Object & Object::operator=(const Object & obj)
+{
+	if (this == &obj) return *this;
+	this->speed = obj.speed;
+	this->position = obj.position;
+	delete this->texture;
+	this->texture = new sf::Texture(*obj.texture);
+	this->isMoving = obj.isMoving;
+	this->type = obj.type;
+	this->coord = obj.coord;
+	this->buffer = obj.buffer;
+	this->dir = obj.dir;
+	return *this;
+}
+
 void Object::UpdatePosition()
 {
 
