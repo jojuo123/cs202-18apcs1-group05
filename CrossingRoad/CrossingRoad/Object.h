@@ -42,6 +42,7 @@ public:
 	}
 	virtual void UpdatePosition();
 	bool isOutOfScreen();
+	Object& operator= (const Object& obj);
 };
 
 #endif // !_OBJECT_H_
