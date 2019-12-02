@@ -194,7 +194,7 @@ void Scene::UpdateCamera()
 	sf::View view;
 	view.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	cerr << currentRow << " " << g->player->coord.x << endl;
+	//cerr << currentRow << " " << g->player->coord.x << endl;
 
 	if (0 <= currentRow && currentRow < numRowOnScreen) {
 		view.setCenter(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);

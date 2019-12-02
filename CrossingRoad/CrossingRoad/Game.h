@@ -76,6 +76,13 @@ public:
 		delete[] map;*/
 		delete player;
 		//delete elements in deque
+		while (!dqOb.empty())
+		{
+			Object* tmp = dqOb.front();
+			dqOb.pop_front();
+			delete tmp;
+			tmp = NULL;
+		}
 		//delete object
 	}
 	/*static Game* getInstance() {
