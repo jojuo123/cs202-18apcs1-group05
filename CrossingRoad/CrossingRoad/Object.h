@@ -43,6 +43,7 @@ public:
 	virtual void UpdatePosition();
 	bool isOutOfScreen();
 	Object& operator= (const Object& obj);
+	void setPosition(sf::IntRect pos) { this->position = pos; }
 };
 
 #endif // !_OBJECT_H_

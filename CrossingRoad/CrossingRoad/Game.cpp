@@ -93,7 +93,7 @@ void Game::InitMap()
 
 void Game::AddObject(int _row, ObjectType o)
 {
-	if (0 != NONE)
+	if (o != NONE)
 	{
 		int col = rand() % columns;
 		Coord temp;
@@ -110,7 +110,7 @@ void Game::AddObject(int _row, ObjectType o)
 			temp.x = col;
 			temp.y = _row;
 		}
-		spaceObs.push_back(rand() % (3 - 1+ 1) + 1);
+		spaceObs.push_back(rand() % (columns/2 - 3+ 1) + 3);
 		Obstacle *obs;
 		switch (o)
 		{
@@ -238,9 +238,9 @@ void Game::generateObject()
 			Object* lastObj = dqOb[row].back();
 			if (!lastObj->isOutOfScreen())
 			{
-				Object * newLastObj = new Object;
+				Object * newLastObj = new Obstacle;
 				*newLastObj = *lastObj;
-				sf::Rect<objSize> position;
+				sf::Rect<objSize> position = lastObj->getPosition();
 				position.left = lastObj->getPosition().left - spaceObs[row] * PIXEL_SIZE;
 				newLastObj->setPosition(position);
 				dqOb[row].push_back(newLastObj);
