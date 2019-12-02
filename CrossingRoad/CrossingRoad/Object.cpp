@@ -51,7 +51,7 @@ void Object::playSound()
 
 bool Object::isOutOfScreen()
 {
-	sf::IntRect screenRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	sf::IntRect screenRect(-3 * PIXEL_SIZE, -3 * PIXEL_SIZE, SCREEN_WIDTH * 2, 0x3c3c3c3c);
 	return !(this->position.intersects(screenRect));
 }
 

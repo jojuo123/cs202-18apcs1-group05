@@ -92,7 +92,7 @@ void Game::InitMap()
 
 void Game::AddObject(int _row, ObjectType o)
 {
-	int col= rand() % columns;
+	int col = rand() % columns;
 	Coord temp;
 	Direction dir;
 	if (col <6 )
@@ -100,7 +100,6 @@ void Game::AddObject(int _row, ObjectType o)
 		dir = RIGHT;
 		temp.x = col;
 		temp.y = _row;
-
 	}
 	else if (col >= 6)
 	{
@@ -173,7 +172,7 @@ bool Game::isEndGame()
 }
 bool Game::isLevelUp()
 {
-	return(player->coord.y <= rows - 1 - l.FinishLane());
+	return(player->coord.y <= rows - 1 - l.FinishLane() && l.getLevelId() <= GAME_MAX_LEVEL);
 }
 bool Game::isEndGameByCollision()
 {
