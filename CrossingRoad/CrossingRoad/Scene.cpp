@@ -43,7 +43,6 @@ void Scene::Init() {
 		break;
 	}
 	case (MENU_LOADGAME): {
-		//window.setFramerateLimit(60);
 		int savedLevel=-1;
 		ifstream fin("SavedLevel.txt", ifstream::in);
 		if (fin.is_open())
@@ -105,7 +104,6 @@ void Scene::Execute()
 		else if (g->isEndGameByCollision())
 		{
 			EndOfGame();
-			
 			sf::Sprite * sp = m.GameOvermenu();
 			window.clear();
 			window.draw(*sp);
@@ -131,6 +129,18 @@ void Scene::Execute()
 			this->Execute();
 			return;
 		}
+		else if (g->isLevelUp())
+		{
+			int  nextLevel = g->getCurrentLevel() + 1;
+			EndOfGame();
+			g = new Game();
+			g->Init(m.chosenPathValue(), nextLevel);
+			window.setFramerateLimit(60);
+			sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
+			sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+			window.setView(view);
+		}
+		
 		
 	}
 	//if (g == NULL) std::cerr << "g == nullptr";
@@ -161,6 +171,10 @@ void Scene::DrawObject(deque<Object*> dqOb)
 
 		sf::Sprite sprite(*(p->texture));
 		sprite.setPosition(p->position.left, p->position.top);
+		if (p->dir == RIGHT)
+			sprite.setTextureRect(sf::IntRect(sprite.getTextureRect().width,0, -sprite.getTextureRect().width, sprite.getTextureRect().height));
+			//sprite.setScale(-1.f, 1.f);
+		sf::Vector2f v =sprite.getPosition();
 		window.draw(sprite);
 
 		newdqOb.push_back(p);

@@ -9,10 +9,10 @@ const int Level::levelListTruckLane[5] = { 2,3,0,22,0 };
 const int Level::levelListMotoLane[5] = { 2,3,17,0,0 };
 const int Level::levelListGrassLane[5] = { 4,3,3,3,3 };
 
-const float Level::levelListDinoSpeed[5] = { 40, 64, 80,110, 128 };
-const float Level::levelListTigSpeed[5] = { 30, 60, 72, 120, 124 };
-const float Level::levelListTruckSpeed[5] = { 80, 90, 100, 120, 130 };
-const float Level::levelListMotoSpeed[5] = { 60, 88, 110, 122, 140 };
+const float Level::levelListDinoSpeed[5] = { 75, 87, 99,115, 135 };
+const float Level::levelListTigSpeed[5] = { 60, 75, 85, 120, 124 };
+const float Level::levelListTruckSpeed[5] = { 120, 150, 170, 190, 222 };
+const float Level::levelListMotoSpeed[5] = { 90, 120, 150, 165, 190 };
 
 vector<ObjectType> Level::getObstacle()
 {

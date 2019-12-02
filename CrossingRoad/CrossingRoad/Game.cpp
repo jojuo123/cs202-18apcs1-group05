@@ -92,21 +92,20 @@ void Game::InitMap()
 
 void Game::AddObject(int _row, ObjectType o)
 {
-	int col= rand() % 2;
+	int col= rand() % columns;
 	Coord temp;
 	Direction dir;
-	if (col == 0)
+	if (col <6 )
 	{
 		dir = RIGHT;
-		temp.x = 0;
+		temp.x = col;
 		temp.y = _row;
 
 	}
-	else if (col == 1)
+	else if (col >= 6)
 	{
 		dir = LEFT;
-		col = columns - 2;//11
-		temp.x = columns;
+		temp.x = col;
 		temp.y = _row;
 	}
 	
@@ -114,22 +113,22 @@ void Game::AddObject(int _row, ObjectType o)
 	switch (o)
 	{
 	case DINOSAUR:
-		obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,2 * PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
 		dqOb.push_front(obs);
 		break; 
 	case TIGER:
-		obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2*PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
 		dqOb.push_back(obs);
 		break;
 	case MOTOR:
-		obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
 		dqOb.push_back(obs);
 		break;
 	case TRUCK:
-		obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  PIXEL_SIZE, PIXEL_SIZE });
+		obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
 		dqOb.push_back(obs);
 		break;
@@ -170,7 +169,11 @@ void Game::AddTile(int _row, ObjectType o)
 
 bool Game::isEndGame()
 {
-	return (gameState == GAME_OVER_GAME || player->coord.y <= rows - 1 - l.FinishLane());
+	return (gameState == GAME_OVER_GAME );
+}
+bool Game::isLevelUp()
+{
+	return(player->coord.y <= rows - 1 - l.FinishLane());
 }
 bool Game::isEndGameByCollision()
 {
@@ -191,8 +194,8 @@ void Game::HandlePlayerInput(int input)
 		break;
 	}
 	case PLAYERINPUT_MOVELEFT: {
-		if (c.x-1>=0)
-			player->Move(LEFT, 64);
+		if (c.x-1>=-columns/2)
+			player->Move(LEFT, 32);
 		break;
 	}
 	case PLAYERINPUT_MOVEUP: {
@@ -201,13 +204,12 @@ void Game::HandlePlayerInput(int input)
 		break;
 	}
 	case PLAYERINPUT_MOVERIGHT: {
-		if (c.x+1<columns)
-			player->Move(RIGHT, 64);
+		if (c.x+1<columns+columns/2)
+			player->Move(RIGHT, 32);
 		break;
 	}
 	}
 }
-
 void Game::UpdateObstaclesPosition()
 {
 	deque<Object*> newdqOb;
