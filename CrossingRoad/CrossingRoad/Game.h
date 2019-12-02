@@ -65,6 +65,7 @@ public:
 	vector<vector<Tile> > GetMap() { return Map; }
 
 	bool isEndGame();
+	bool isLevelUp();
 	bool isEndGameByCollision();
 	int getCurrentLevel() { return currentLevel; };
 	~Game()

@@ -38,6 +38,7 @@ public:
 	float TigerSpeed() { return levelListTigSpeed[LevelId - 1]; }
 	float TruckSpeed() { return levelListTruckSpeed[LevelId - 1]; }
 	float MotorSpeed() { return levelListMotoSpeed[LevelId - 1]; }
+	int getLevelId() { return LevelId; };
 	friend class Scene;
 	friend class Game;
 };

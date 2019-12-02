@@ -31,7 +31,9 @@ using namespace std;
 #define GAME_PAUSE_GAME 2
 #define GAME_OVER_GAME 3
 #define GAME_OVER_COLLISION_GAME 4
+#define GAME_OVER_LEVEL_UP_GAME 5
 
+#define GAME_MAX_LEVEL 5
 #define PIXEL_SIZE 64
 
 //const int SCREEN_WIDTH = 800;
