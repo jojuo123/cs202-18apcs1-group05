@@ -151,7 +151,8 @@ void Scene::Draw(vector<vector<Tile> > &Map)
 	window.clear();
 	//Draw all of g (Tiles, obstacles beforehand)
 	DrawMap(Map);
-	DrawObject(g->dqOb);
+	for (int r = 0; r<g->rows; ++r)
+		DrawObject(g->dqOb[r]);
 	Draw(g->player);
 	window.display();
 }
@@ -262,8 +263,8 @@ void Scene::HandleInput()
 }
 void Scene::checkCollision()
 {
-	deque<Object*> dq = this->g->dqOb;
-	deque<Object*> newdqOb;
+	deque<Object*> dq = this->g->dqOb[g->player->coord.y];
+	//deque<Object*> newdqOb;
 	while (!dq.empty()) {
 		Object *p = dq.front(); dq.pop_front();
 		bool isHit = this->g->player->isHit(p);	
@@ -272,7 +273,7 @@ void Scene::checkCollision()
 			g->ChangeState(GAME_OVER_COLLISION_GAME);			
 			break;
 		}
-		newdqOb.push_back(p);
+		//newdqOb.push_back(p);
 	}
-	this->g->dqOb = newdqOb;
+	//this->g->dqOb = newdqOb;
 }

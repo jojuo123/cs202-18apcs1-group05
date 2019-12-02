@@ -48,8 +48,9 @@ void Game::InitMap()
 {
 	
 	rows = l.FinishLane() + 2;
+	dqOb.resize(rows);
 	vector<ObjectType> obj = l.getObstacle();
-	while (obj.size() < rows) obj.push_back(NONE);
+	while ((int)obj.size() < rows) obj.push_back(NONE);
 	std::reverse(obj.begin(), obj.end());
 
 	columns = (int)(ceil(SCREEN_WIDTH / PIXEL_SIZE));
@@ -114,22 +115,22 @@ void Game::AddObject(int _row, ObjectType o)
 	case DINOSAUR:
 		obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,2 * PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
-		dqOb.push_front(obs);
+		dqOb[_row].push_front(obs);
 		break; 
 	case TIGER:
 		obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2*PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
-		dqOb.push_back(obs);
+		dqOb[_row].push_back(obs);
 		break;
 	case MOTOR:
 		obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
-		dqOb.push_back(obs);
+		dqOb[_row].push_back(obs);
 		break;
 	case TRUCK:
 		obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2* PIXEL_SIZE, PIXEL_SIZE });
 		obs->setDirection(dir);
-		dqOb.push_back(obs);
+		dqOb[_row].push_back(obs);
 		break;
 	}
 	
@@ -211,14 +212,17 @@ void Game::HandlePlayerInput(int input)
 }
 void Game::UpdateObstaclesPosition()
 {
-	deque<Object*> newdqOb;
-	while (!dqOb.empty()) {
-		Object *p = dqOb.front(); dqOb.pop_front();
-		p->UpdatePosition();
-		if (p->isOutOfScreen()) { //p is out of screen
-			delete p;
+	for (int r = 0; r < rows; ++r) {
+		deque<Object*> &dq = dqOb[r];
+		deque<Object*> newdqOb;
+		while (!dq.empty()) {
+			Object *p = dq.front(); dq.pop_front();
+			p->UpdatePosition();
+			if (p->isOutOfScreen()) { //p is out of screen
+				delete p;
+			}
+			else newdqOb.push_back(p);
 		}
-		else newdqOb.push_back(p);
+		dq = newdqOb;
 	}
-	this->dqOb = newdqOb;
 }

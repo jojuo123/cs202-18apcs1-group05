@@ -29,7 +29,7 @@ private:
 	int rows, columns;
 	int currentLevel;
 	Player* player;
-	deque<Object*> dqOb;
+	vector<deque<Object*> > dqOb;
 	//Tile** map;
 	vector<vector<Tile> > Map;
 	Obstacle* dino, * truck, * tiger, * motor;
@@ -76,13 +76,13 @@ public:
 		delete[] map;*/
 		delete player;
 		//delete elements in deque
-		while (!dqOb.empty())
-		{
-			Object* tmp = dqOb.front();
-			dqOb.pop_front();
-			delete tmp;
-			tmp = NULL;
+		for (deque<Object*> &ob : dqOb) {
+			while (!ob.empty()) {
+				delete ob.front();
+				ob.pop_front();
+			}
 		}
+		dqOb.clear();
 		//delete object
 	}
 	/*static Game* getInstance() {
