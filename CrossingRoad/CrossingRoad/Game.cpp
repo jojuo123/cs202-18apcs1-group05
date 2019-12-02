@@ -82,6 +82,7 @@ void Game::InitMap()
 				Map[i][j] = FinishTile;
 				Map[i][j].SetTopLeftCoord(i * PIXEL_SIZE, j * PIXEL_SIZE);
 			}
+			spaceObs.push_back(-1);
 		}
 		else
 		{
@@ -89,6 +90,8 @@ void Game::InitMap()
 			AddObject(i, obj[i]);
 		}
 	}
+	for (int row = 0; row < spaceObs.size(); ++row)
+		cerr << row << " " << spaceObs[row] << endl;
 }
 
 void Game::AddObject(int _row, ObjectType o)
@@ -110,7 +113,7 @@ void Game::AddObject(int _row, ObjectType o)
 			temp.x = col;
 			temp.y = _row;
 		}
-		spaceObs.push_back(rand() % (columns/2 - 3+ 1) + 3);
+		spaceObs.push_back(rand() % (columns-4 - 5+ 1) + 5);
 		Obstacle *obs;
 		switch (o)
 		{
@@ -241,9 +244,13 @@ void Game::generateObject()
 				Object * newLastObj = new Obstacle;
 				*newLastObj = *lastObj;
 				sf::Rect<objSize> position = lastObj->getPosition();
-				position.left = lastObj->getPosition().left - spaceObs[row] * PIXEL_SIZE;
+				if(newLastObj->getDirection() == RIGHT)
+					position.left = lastObj->getPosition().left - spaceObs[row] * PIXEL_SIZE;
+				else if(newLastObj->getDirection() == LEFT)
+					position.left = lastObj->getPosition().left + spaceObs[row] * PIXEL_SIZE;
 				newLastObj->setPosition(position);
 				dqOb[row].push_back(newLastObj);
+				//cerr <<row<<" "<< spaceObs[row] << endl;
 			}
 		}
 	}
