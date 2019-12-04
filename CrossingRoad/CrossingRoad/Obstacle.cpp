@@ -7,3 +7,11 @@ void Obstacle::UpdatePosition() {
 	this->position.left += deltaS;
 	clock.restart();
 }
+
+Obstacle & Obstacle::operator=(const Obstacle & obs)
+{
+	if (this == &obs) return *this;
+	Object::operator=(obs);
+	clock.restart();
+	return *this;
+}
