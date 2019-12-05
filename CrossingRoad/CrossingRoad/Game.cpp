@@ -115,10 +115,15 @@ void Game::AddObject(int _row, ObjectType o)
 		}
 		spaceObs.push_back(rand() % (columns-4 - 5+ 1) + 5);
 		Obstacle *obs;
+		int rdOpt = 0;
 		switch (o)
 		{
 		case DINOSAUR:
-			obs = Obstacle::Create(DINOSAUR, l.DinoSpeed(), temp, "image/dinosaur.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,2 * PIXEL_SIZE, PIXEL_SIZE });
+			rdOpt = rand() % 2;
+			if (rdOpt == 0)
+				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur.gif", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			else 
+				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;
@@ -128,12 +133,20 @@ void Game::AddObject(int _row, ObjectType o)
 			dqOb[_row].push_front(obs);
 			break;
 		case MOTOR:
-			obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			rdOpt = rand() % 2;
+			if (rdOpt == 0)
+				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			else 
+				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;
 		case TRUCK:
-			obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			rdOpt = rand() % 2;
+			if (rdOpt == 0)
+				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+			else 
+				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;

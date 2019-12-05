@@ -36,6 +36,8 @@ using namespace std;
 #define GAME_MAX_LEVEL 5
 #define PIXEL_SIZE 64
 
+#define NO_OF_SKIN 7
+
 //const int SCREEN_WIDTH = 800;
 //const int SCREEN_HEIGHT = 600;
 //sf::String SCREEN_TITLE = "Viet cong muon nam";

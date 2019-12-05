@@ -1,11 +1,13 @@
 #include "Menu.h"
 using namespace std;
-const string Menu::path[5] = {
+const string Menu::path[NO_OF_SKIN] = {
 	"image/skin1.png",
 	"image/skin2.png",
 	"image/skin3.png",
 	"image/skin4.png",
 	"image/skin5.png",
+	"image/skin6.png",
+	"image/skin7.png"
 };
 
 int Menu::StartMenu(sf::RenderWindow &window, sf::Font &font) {
@@ -191,7 +193,7 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 					if (sel == 0)
 					{
 						ImgSel++;
-						if (ImgSel == 5)
+						if (ImgSel == NO_OF_SKIN)
 						{
 							ImgSel = 0;
 						}
@@ -212,7 +214,7 @@ int Menu::SettingMenu(sf::RenderWindow & window, sf::Font & font)
 						ImgSel--;
 						if (ImgSel < 0)
 						{
-							ImgSel = 4;
+							ImgSel = NO_OF_SKIN - 1;
 						}
 					}
 					else if (sel == 1)

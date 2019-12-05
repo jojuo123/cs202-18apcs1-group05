@@ -94,6 +94,11 @@ void Scene::Execute()
 	//vector<vector<Tile> > Map = g->GetMap();
 	while (g != nullptr) {
 		HandleInput();
+		if (g == NULL || g->isEndGame())
+		{
+			EndOfGame();
+			break;
+		}
 		Update();
 		Draw(g->Map);
 		checkCollision();

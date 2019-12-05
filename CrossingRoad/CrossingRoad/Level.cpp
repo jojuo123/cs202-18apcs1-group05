@@ -1,4 +1,5 @@
 #include "Level.h"
+#include <algorithm>
 
 const int Level::levelListRoad[5] = {
 	10, 15, 20, 25, 30
@@ -9,10 +10,10 @@ const int Level::levelListTruckLane[5] = { 2,3,0,22,0 };
 const int Level::levelListMotoLane[5] = { 2,3,17,0,0 };
 const int Level::levelListGrassLane[5] = { 4,3,3,3,3 };
 
-const float Level::levelListDinoSpeed[5] = { 75, 87, 99,115, 135 };
-const float Level::levelListTigSpeed[5] = { 60, 75, 85, 120, 124 };
-const float Level::levelListTruckSpeed[5] = { 120, 150, 170, 190, 222 };
-const float Level::levelListMotoSpeed[5] = { 90, 120, 150, 165, 190 };
+const float Level::levelListDinoSpeed[5] = { 100000, 400, 99,115, 135 };
+const float Level::levelListTigSpeed[5] = { 100000, 400, 85, 120, 124 };
+const float Level::levelListTruckSpeed[5] = { 100000, 400, 170, 190, 222 };
+const float Level::levelListMotoSpeed[5] = { 100000, 400, 150, 165, 190 };
 
 vector<ObjectType> Level::getObstacle()
 {
@@ -27,6 +28,6 @@ vector<ObjectType> Level::getObstacle()
 	rowLane.push_back(NONE);
 
 	int ccgido = (int)rowLane.size() - 1;
-	random_shuffle(rowLane.begin() + 2, rowLane.begin() + ccgido);
+	std::random_shuffle(rowLane.begin() + 2, rowLane.begin() + ccgido);
 	return rowLane;
 }

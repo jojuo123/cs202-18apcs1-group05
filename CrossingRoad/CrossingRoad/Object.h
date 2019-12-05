@@ -35,6 +35,7 @@ public:
 	void playSound();
 	//virtual void UpdatePosition();
 	//bool isOutOfScreen();
+	Direction getDirection() { return dir; }
 	friend class Scene;
 	virtual ~Object()
 	{

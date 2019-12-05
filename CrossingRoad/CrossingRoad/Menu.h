@@ -26,7 +26,7 @@ private:
 	bool sound = 1;
 	string chosenPath = "Image/player.png";
 	string gameOverScreenPath = "Image/game_over.jpg";
-	static const string path[5];
+	static const string path[NO_OF_SKIN];
 	
 public:
 	int StartMenu(sf::RenderWindow &window, sf::Font &font);
