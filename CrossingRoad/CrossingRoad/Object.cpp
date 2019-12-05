@@ -61,7 +61,7 @@ Object & Object::operator=(const Object & obj)
 	this->speed = obj.speed;
 	this->position = obj.position;
 	delete this->texture;
-	this->texture = new sf::Texture(*obj.texture);
+	this->texture = (obj.texture != NULL) ? new sf::Texture(*obj.texture) : NULL;
 	this->isMoving = obj.isMoving;
 	this->type = obj.type;
 	this->coord = obj.coord;
@@ -70,7 +70,7 @@ Object & Object::operator=(const Object & obj)
 	return *this;
 }
 
-void Object::UpdatePosition()
+void Object::UpdatePosition(bool isRunning)
 {
 
 }

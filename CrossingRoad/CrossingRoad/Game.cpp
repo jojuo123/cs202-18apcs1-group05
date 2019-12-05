@@ -58,6 +58,7 @@ void Game::InitMap()
 	//for (int i = 0; i < rows; i++) Map[i] = new Tile[columns];
 
 	Map = vector<vector<Tile> >(rows, vector<Tile>(columns, Tile()));
+	lampList = vector<Lamp>(rows, Lamp());
 
 	for (int i = 0; i < rows; ++i)
 	{
@@ -86,12 +87,20 @@ void Game::InitMap()
 		}
 		else
 		{
+			AddLamp(i, obj[i]);
 			AddTile(i, obj[i]);
 			AddObject(i, obj[i]);
 		}
 	}
-	for (int row = 0; row < spaceObs.size(); ++row)
-		cerr << row << " " << spaceObs[row] << endl;
+	for (int row = 0; row < lampList.size(); ++row)
+		cerr << row << " " << lampList[row].GetState() << endl;
+}
+
+void Game::AddLamp(int _row, ObjectType o)
+{
+	if (o == NONE) return;
+	int time = rand() % 5 + 1;
+	lampList[_row] = Lamp(time, Coord(0, _row), "image/light0.png", LAMP, { 0, _row * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE });
 }
 
 void Game::AddObject(int _row, ObjectType o)
@@ -151,6 +160,8 @@ void Game::AddObject(int _row, ObjectType o)
 			dqOb[_row].push_front(obs);
 			break;
 		}
+
+		//Object* lamp = new Object(0, Coord(0, _row), "image/");
 	}
 	else spaceObs.push_back(-1);
 }
@@ -231,12 +242,15 @@ void Game::HandlePlayerInput(int input)
 }
 void Game::UpdateObstaclesPosition()
 {
+	//int rd = rand() % 2;
+	//cerr << rd << endl;
 	for (int r = 0; r < rows; ++r) {
 		deque<Object*> &dq = dqOb[r];
 		deque<Object*> newdqOb;
 		while (!dq.empty()) {
 			Object *p = dq.front(); dq.pop_front();
-			p->UpdatePosition();
+			lampList[r].Update();
+			p->UpdatePosition(!lampList[r].GetState());
 			if (p->isOutOfScreen()) { //p is out of screen
 				delete p;
 			}
