@@ -61,6 +61,7 @@ public:
 	void Draw(vector<vector<Tile> > &Map);
 	void DrawMap(vector<vector<Tile> > &Map);
 	void DrawObject(deque<Object*> dqOb);
+	void DrawLamp(vector<Lamp> &);
 	void Pause();
 	
 	void HandleInput();

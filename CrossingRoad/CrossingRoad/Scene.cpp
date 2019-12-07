@@ -157,6 +157,7 @@ void Scene::Draw(vector<vector<Tile> > &Map)
 	window.clear();
 	//Draw all of g (Tiles, obstacles beforehand)
 	DrawMap(Map);
+	DrawLamp(g->lampList);
 	for (int r = 0; r<g->rows; ++r)
 		DrawObject(g->dqOb[r]);
 	Draw(g->player);
@@ -187,6 +188,19 @@ void Scene::DrawObject(deque<Object*> dqOb)
 		newdqOb.push_back(p);
 	}
 	dqOb = newdqOb;
+}
+void Scene::DrawLamp(vector<Lamp>& lampList)
+{
+	for (int i = 0; i < lampList.size(); ++i)
+	{
+		if (lampList[i].texture == NULL) continue;
+		if (Object * obj = dynamic_cast<Object*>(&lampList[i]))
+		{
+			Draw(obj);
+		}
+		else
+			cerr << "casting error" << endl;
+	}
 }
 void Scene::UpdateCamera()
 {

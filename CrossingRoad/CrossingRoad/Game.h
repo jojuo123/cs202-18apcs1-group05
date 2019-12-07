@@ -15,6 +15,7 @@
 #include <vector>
 #include "Level.h"
 #include "Tile.h"
+#include "Lamp.h"
 #include <Windows.h>
 #include <queue>
 #include <memory>
@@ -30,6 +31,7 @@ private:
 	int currentLevel;
 	Player* player;
 	vector<deque<Object*> > dqOb;
+	vector<Lamp> lampList;
 	vector<int>  spaceObs;
 	//Tile** map;
 	vector<vector<Tile> > Map;
@@ -59,6 +61,7 @@ public:
 	void Init(string chosenPath, int level =1);
 	void InitTile();
 	void InitMap();
+	void AddLamp(int _row, ObjectType o);
 	void AddObject(int _row, ObjectType o);
 	void AddTile(int _row, ObjectType o);
 	//void InitMap(int, int); 
