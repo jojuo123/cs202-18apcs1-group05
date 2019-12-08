@@ -6,13 +6,13 @@ void Lamp::ChangeState()
 	Object::texture->loadFromFile("image/light" + std::to_string(state) + ".png");
 }
 
-void Lamp::Update()
+void Lamp::Update(int minR, int maxR, int minG, int maxG)
 {
 	float t = clock.getElapsedTime().asSeconds();
 	if (t >= Object::timer)
 	{
 		ChangeState();
-		Object::timer = rand() % 5 + 2;
+		Object::timer = (state)?rand() % (maxG - minG) + minG : rand() % (maxR - minR) + minR;
 		clock.restart();
 	}
 	//clock.restart();

@@ -22,7 +22,7 @@ public:
 	}
 	void ChangeState();
 	int GetState() { return state; }
-	void Update();
+	void Update(int, int, int, int);
 };
 
 #endif // !_LAMP_H_

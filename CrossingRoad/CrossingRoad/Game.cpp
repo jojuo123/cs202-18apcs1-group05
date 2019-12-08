@@ -99,7 +99,7 @@ void Game::InitMap()
 void Game::AddLamp(int _row, ObjectType o)
 {
 	if (o == NONE) return;
-	int time = rand() % 5 + 1;
+	int time = rand() % (l.MaxGreenTimer() - l.MinGreenTimer()) + l.MinGreenTimer();
 	lampList[_row] = Lamp(time, Coord(0, _row), "image/light0.png", LAMP, { 0, _row * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE });
 }
 
@@ -249,7 +249,7 @@ void Game::UpdateObstaclesPosition()
 		deque<Object*> newdqOb;
 		while (!dq.empty()) {
 			Object *p = dq.front(); dq.pop_front();
-			lampList[r].Update();
+			lampList[r].Update(l.MinRedTimer(), l.MaxRedTimer(), l.MinGreenTimer(), l.MaxGreenTimer());
 			p->UpdatePosition(!lampList[r].GetState());
 			if (p->isOutOfScreen()) { //p is out of screen
 				delete p;

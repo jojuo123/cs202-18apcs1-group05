@@ -25,6 +25,11 @@ private:
 	static const float levelListTigSpeed[5];
 	static const float levelListTruckSpeed[5];
 	static const float levelListMotoSpeed[5];
+
+	static const int levelListMaxRedTimer[5];
+	static const int levelListMinRedTimer[5];
+	static const int levelListMaxGreenTimer[5];
+	static const int levelListMinGreenTimer[5];
 	//2 row dau la grass
 	//row cuoi grass
 	
@@ -39,6 +44,10 @@ public:
 	float TruckSpeed() { return levelListTruckSpeed[LevelId - 1]; }
 	float MotorSpeed() { return levelListMotoSpeed[LevelId - 1]; }
 	int getLevelId() { return LevelId; };
+	int MinRedTimer() { return levelListMinRedTimer[LevelId - 1]; }
+	int MaxRedTimer() { return levelListMaxRedTimer[LevelId - 1]; }
+	int MaxGreenTimer() { return levelListMaxGreenTimer[LevelId - 1]; }
+	int MinGreenTimer() { return levelListMinGreenTimer[LevelId - 1]; }
 	friend class Scene;
 	friend class Game;
 };
