@@ -41,7 +41,7 @@ public:
 	{
 		delete texture;
 	}
-	virtual void UpdatePosition();
+	virtual void UpdatePosition(bool isRunning = true);
 	bool isOutOfScreen();
 	Object& operator= (const Object& obj);
 	void setPosition(sf::IntRect pos) { this->position = pos; }
