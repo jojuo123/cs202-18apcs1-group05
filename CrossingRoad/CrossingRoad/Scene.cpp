@@ -111,6 +111,7 @@ void Scene::Execute()
 		{
 			EndOfGame();
 			sf::Sprite * sp = m.GameOvermenu();
+			window.setView(window.getDefaultView());
 			window.clear();
 			window.draw(*sp);
 			window.display();
