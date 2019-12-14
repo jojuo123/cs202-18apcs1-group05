@@ -124,7 +124,7 @@ void Scene::Execute()
 					if (event.type == sf::Event::KeyReleased) {
 						if (event.key.code == sf::Keyboard::Enter || event.key.code == sf::Keyboard::Escape)
 							pause = 1;
-					};	
+					};
 				}
 				if (pause == 1)
 					break;
@@ -134,21 +134,59 @@ void Scene::Execute()
 			//start new game
 			this->Init();
 			this->Execute();
+
 			return;
 		}
 		else if (g->isLevelUp())
 		{
 			int  nextLevel = g->getCurrentLevel() + 1;
 			EndOfGame();
-			g = new Game();
-			g->Init(m.chosenPathValue(), nextLevel);
-			window.setFramerateLimit(60);
-			sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
-			sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-			window.setView(view);
+			if (nextLevel <= GAME_MAX_LEVEL)
+			{
+				g = new Game();
+				g->Init(m.chosenPathValue(), nextLevel);
+				window.setFramerateLimit(60);
+				sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
+				sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+				window.setView(view);
+			}
+			else
+			{
+				sf::Text t;
+				t.setString("FINISH GAME!");
+				t.setFont(menuFont);
+				t.setScale(3, 3);
+				t.setFillColor(sf::Color(200, 100, 20));
+				t.setPosition(10, 1);
+				sf::Text t2;
+				t2.setString("Press enter to continue");
+				t2.setFont(menuFont);
+				t2.setFillColor(sf::Color(200, 150, 40));
+				t2.setPosition(15, 100);
+				window.clear();
+				window.draw(t);
+				window.draw(t2);
+				window.display();
+				int x = 1;
+				//this->Init();
+				sf::Event event;
+				while (window.isOpen())
+				{
+					bool pause = 0;
+					while (window.pollEvent(event)) {
+						if (event.type == sf::Event::KeyReleased) {
+							if (event.key.code == sf::Keyboard::Enter || event.key.code == sf::Keyboard::Escape)
+								pause = 1;
+						};
+					}
+					if (pause == 1)
+						break;
+				}
+				window.clear();
+				this->Init();
+				this->Execute();
+			}
 		}
-		
-		
 	}
 	//if (g == NULL) std::cerr << "g == nullptr";
 }
