@@ -109,6 +109,8 @@ void Scene::Execute()
 		}
 		else if (g->isEndGameByCollision())
 		{
+			if (m.soundValue())
+				gameOverSound.play();
 			EndOfGame();
 			sf::Sprite * sp = m.GameOvermenu();
 			window.setView(window.getDefaultView());

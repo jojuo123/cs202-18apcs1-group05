@@ -31,6 +31,8 @@ private:
 	Menu m;
 	sf::RenderWindow window;
 	sf::Font menuFont;
+	sf::SoundBuffer gameOverSoundBuffer;
+	sf::Sound gameOverSound;
 	Scene() {
 		using namespace sf;
 		//g = Game::getInstance();
@@ -38,6 +40,8 @@ private:
 		//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
 		window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Viet cong muon nam");
 		menuFont.loadFromFile("verdana.ttf");
+		gameOverSoundBuffer.loadFromFile("sound/vvh.wav");
+		gameOverSound.setBuffer(gameOverSoundBuffer);
 	}
 	
 	static Scene* sc;
