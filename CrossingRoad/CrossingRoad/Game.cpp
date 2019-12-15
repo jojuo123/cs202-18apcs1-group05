@@ -30,7 +30,7 @@ void Game::Init(string chosenPath, int level)
 	l = Level(currentLevel);
 	InitTile();
 	InitMap();
-	player = new Player(0, { columns / 2, rows - 1 }, chosenPath, "sound/csdn.wav", PLAYER, { (columns / 2) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
+	player = new Player(0, { columns / 2, rows - 1 }, chosenPath, "sound/pop.wav", PLAYER, { (columns / 2) * PIXEL_SIZE, (rows - 1) * PIXEL_SIZE ,64,64 });
 }
 void Game::InitTile()
 {
@@ -137,25 +137,25 @@ void Game::AddObject(int _row, ObjectType o)
 			dqOb[_row].push_front(obs);
 			break;
 		case TIGER:
-			obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2 * PIXEL_SIZE, PIXEL_SIZE });
+			obs = Obstacle::Create(TIGER, l.TigerSpeed(), temp, "image/tiger.png", "sound/vvh.wav", { col*PIXEL_SIZE, _row*PIXEL_SIZE,  2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;
 		case MOTOR:
 			rdOpt = rand() % 2;
 			if (rdOpt == 0)
-				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor.png", "sound/kenxemay.wav", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			else 
-				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(MOTOR, l.MotorSpeed(), temp, "image/motor2.png", "sound/kenxemay.wav", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;
 		case TRUCK:
 			rdOpt = rand() % 2;
 			if (rdOpt == 0)
-				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/csdn", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck.png", "sound/kenxetai.wav", { col*PIXEL_SIZE, _row*PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			else 
-				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(TRUCK, l.TruckSpeed(), temp, "image/truck2.png", "sound/kenxetai.wav", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;
@@ -214,28 +214,32 @@ void Game::ChangeState(int state)
 	gameState = state;
 }
 
-void Game::HandlePlayerInput(int input)
+void Game::HandlePlayerInput(int input, bool soundOn)
 {
 	Coord c = player->coord;
 	switch (input) {
 	case PLAYERINPUT_MOVEDOWN: {
 		if (c.y+1<rows)
 			player->Move(DOWN, 64);
+		player->playSound(soundOn);
 		break;
 	}
 	case PLAYERINPUT_MOVELEFT: {
 		if (c.x-1>=-columns/2)
 			player->Move(LEFT, 32);
+		player->playSound(soundOn);
 		break;
 	}
 	case PLAYERINPUT_MOVEUP: {
 		if (c.y-1>=0)
 			player->Move(UP, 64);
+		player->playSound(soundOn);
 		break;
 	}
 	case PLAYERINPUT_MOVERIGHT: {
 		if (c.x+1<columns+columns/2)
 			player->Move(RIGHT, 32);
+		player->playSound(soundOn);
 		break;
 	}
 	}

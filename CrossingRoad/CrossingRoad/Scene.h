@@ -59,7 +59,7 @@ public:
 	}
 	void Init();
 	void Update();
-	void checkCollision();
+	Object* checkCollision();
 	void Execute();
 	void Destroy();
 	void Draw(vector<vector<Tile> > &Map);
