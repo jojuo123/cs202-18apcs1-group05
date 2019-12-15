@@ -101,7 +101,14 @@ void Scene::Execute()
 		}
 		Update();
 		Draw(g->Map);
-		checkCollision();
+		{
+			Object *pp = checkCollision();
+			if (pp != nullptr) {
+				pp->playSound(m.soundValue());
+				sf::sleep(sf::milliseconds(1000));
+			}
+				
+		}
 		if (g == NULL || g->isEndGame())
 		{
 			EndOfGame();
@@ -109,8 +116,8 @@ void Scene::Execute()
 		}
 		else if (g->isEndGameByCollision())
 		{
-			if (m.soundValue())
-				gameOverSound.play();
+			//if (m.soundValue())
+			//	gameOverSound.play();
 			EndOfGame();
 			sf::Sprite * sp = m.GameOvermenu();
 			window.setView(window.getDefaultView());
@@ -275,13 +282,13 @@ void Scene::HandleInput()
 	while (window.pollEvent(event)) {
 		if (event.type == Event::KeyPressed) {
 			if (event.key.code == Keyboard::Up) {
-				g->HandlePlayerInput(PLAYERINPUT_MOVEUP);
+				g->HandlePlayerInput(PLAYERINPUT_MOVEUP, m.soundValue());
 			}
 			if (event.key.code == Keyboard::Down) {
-				g->HandlePlayerInput(PLAYERINPUT_MOVEDOWN);
+				g->HandlePlayerInput(PLAYERINPUT_MOVEDOWN, m.soundValue());
 			}
 			if (event.key.code == Keyboard::Left) {
-				g->HandlePlayerInput(PLAYERINPUT_MOVELEFT);
+				g->HandlePlayerInput(PLAYERINPUT_MOVELEFT, m.soundValue());
 
 			}
 			if (event.key.code == Keyboard::Right) {
@@ -322,7 +329,7 @@ void Scene::HandleInput()
 		}
 	}
 }
-void Scene::checkCollision()
+Object* Scene::checkCollision()
 {
 	deque<Object*> dq = this->g->dqOb[g->player->coord.y];
 	//deque<Object*> newdqOb;
@@ -332,9 +339,10 @@ void Scene::checkCollision()
 		if (isHit == 1)
 		{
 			g->ChangeState(GAME_OVER_COLLISION_GAME);			
-			break;
+			return p;
 		}
 		//newdqOb.push_back(p);
 	}
 	//this->g->dqOb = newdqOb;
+	return nullptr;
 }

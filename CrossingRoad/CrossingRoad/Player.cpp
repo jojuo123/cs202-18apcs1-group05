@@ -42,10 +42,3 @@ void Player::Move(Direction dir, objSize numPixel)
 	}
 	}
 }
-
-void Player::playSound()
-{
-	sf::Sound sound;
-	sound.setBuffer(buffer);
-	sound.play();
-}
