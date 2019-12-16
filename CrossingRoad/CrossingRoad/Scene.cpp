@@ -10,10 +10,11 @@ Scene::Scene()
 	//g = Game::getInstance();
 	m = Menu();
 	//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
-	window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Viet cong muon nam");
+	window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Cross the Road!");
 	menuFont.loadFromFile("verdana.ttf");
 	gameOverSoundBuffer.loadFromFile("sound/vvh.wav");
 	gameOverSound.setBuffer(gameOverSoundBuffer);
+	bgm.openFromFile("sound/bgm-zymeth.wav"); bgm.setLoop(true);
 }
 
 void Scene::Draw(const Object * obj)
@@ -53,6 +54,8 @@ void Scene::Init() {
 		sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
 		sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 		window.setView(view);
+		if (m.soundValue())
+			bgm.play();
 		break;
 	}
 	case (MENU_LOADGAME): {
@@ -70,6 +73,8 @@ void Scene::Init() {
 				sf::Vector2f centralP(g->columns / 2 * PIXEL_SIZE, g->rows * PIXEL_SIZE - SCREEN_HEIGHT / 2);
 				sf::View view(centralP, sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 				window.setView(view);
+				if (m.soundValue())
+					bgm.play();
 			}
 			else
 			{
@@ -117,6 +122,7 @@ void Scene::Execute()
 		{
 			Object *pp = checkCollision();
 			if (pp != nullptr) {
+				bgm.stop();
 				pp->playSound(m.soundValue());
 				sf::sleep(sf::milliseconds(1000));
 			}
@@ -134,14 +140,14 @@ void Scene::Execute()
 			EndOfGame();
 			sf::Sprite * sp = m.GameOvermenu();
 			window.setView(window.getDefaultView());
-			window.clear();
-			window.draw(*sp);
-			window.display();
 			sf::Event event;
 			//wait for enter or escape pressed
 			while (window.isOpen())
 			{
 				bool pause = 0;
+				window.clear();
+				window.draw(*sp);
+				window.display();
 				while (window.pollEvent(event)) {
 					if (event.type == sf::Event::KeyReleased) {
 						if (event.key.code == sf::Keyboard::Enter || event.key.code == sf::Keyboard::Escape)
@@ -174,6 +180,7 @@ void Scene::Execute()
 			}
 			else
 			{
+				bgm.stop();
 				sf::Text t;
 				t.setString("FINISH GAME!");
 				t.setFont(menuFont);
