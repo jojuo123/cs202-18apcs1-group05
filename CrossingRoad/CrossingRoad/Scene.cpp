@@ -83,6 +83,12 @@ void Scene::Init() {
 				this->Init();
 			}
 		}
+		else
+		{
+			cerr << "No saved game exist";
+			fin.close();
+			this->Init();
+		}
 		break;
 	}
 	case (MENU_SETTING):
