@@ -1,7 +1,8 @@
 #include "Player.h"
 
 bool Player::isHit(Object *&obj) {
-	return position.intersects(obj->getPosition());
+	sf::Rect<objSize> tmp = { position.left + 12, position.top, 40 , position.height };
+	return tmp.intersects(obj->getPosition());
 }
 
 void Player::Move(Direction dir, objSize numPixel)

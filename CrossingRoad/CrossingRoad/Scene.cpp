@@ -3,6 +3,19 @@
 
 using namespace std;
 Scene* Scene::sc = nullptr;
+
+Scene::Scene()
+{
+	using namespace sf;
+	//g = Game::getInstance();
+	m = Menu();
+	//window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), SCREEN_TITLE);
+	window.create(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Viet cong muon nam");
+	menuFont.loadFromFile("verdana.ttf");
+	gameOverSoundBuffer.loadFromFile("sound/vvh.wav");
+	gameOverSound.setBuffer(gameOverSoundBuffer);
+}
+
 void Scene::Draw(const Object * obj)
 {
 	if (obj->texture == nullptr) return;
@@ -328,6 +341,16 @@ void Scene::HandleInput()
 			g->ChangeState(GAME_OVER_GAME);	
 		}
 	}
+}
+void Scene::EndOfGame()
+{
+		delete g;
+		g = NULL;
+}
+Scene::~Scene()
+{
+		window.close();
+		delete g;
 }
 Object* Scene::checkCollision()
 {

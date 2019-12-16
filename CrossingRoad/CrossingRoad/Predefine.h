@@ -54,7 +54,6 @@ struct Coord
 	Coord() { x = y = 0; }
 };
 
-void GoToXY(int, int);
 
 
 #endif // _PREDEFINE_
