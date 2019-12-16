@@ -33,69 +33,32 @@ private:
 	vector<deque<Object*> > dqOb;
 	vector<Lamp> lampList;
 	vector<int>  spaceObs;
-	//Tile** map;
 	vector<vector<Tile> > Map;
-	Obstacle* dino, * truck, * tiger, * motor;
+	//Obstacle* dino, * truck, * tiger, * motor;
 	Level l;
-	int FPS;
-	int currentRoad;
-	//static Game* instance;
+	//int currentRoad;
 	int score;
 	int gameState;
-	//Game() {}
 public:
-	Game()
-	{
-	}
+	Game() = default;
 	void StartGame();
-	void resetGame();
-	void SaveGame(istream);
-	void LoadGame(ostream);
 	void HandlePlayerInput(int input, bool soundOn=true);
-	void Pause(HANDLE);
-	void Resume(HANDLE);
 	void UpdateObstaclesPosition();
 	void generateObject();
-	//void Init();
-	//void Init(string);
 	void Init(string chosenPath, int level =1);
 	void InitTile();
 	void InitMap();
 	void AddLamp(int _row, ObjectType o);
 	void AddObject(int _row, ObjectType o);
 	void AddTile(int _row, ObjectType o);
-	//void InitMap(int, int); 
-	void Exit(int option);
-
 	vector<vector<Tile> > GetMap() { return Map; }
-
 	bool isEndGame();
 	bool isLevelUp();
 	bool isEndGameByCollision();
 	int getCurrentLevel() { return currentLevel; };
-	~Game()
-	{
-		//delete map;
-		/*for (int i = 0; i < rows; i++)
-			delete[] map[i];
-		delete[] map;*/
-		delete player;
-		//delete elements in deque
-		for (deque<Object*> &ob : dqOb) {
-			while (!ob.empty()) {
-				delete ob.front();
-				ob.pop_front();
-			}
-		}
-		dqOb.clear();
-		//delete object
-	}
-	/*static Game* getInstance() {
-		return (instance == nullptr ? instance = new Game() : instance);
-	}*/
+	~Game();
 	void ChangeState(int state);
 	friend class Scene;
 };
-//
 
 #endif // !_GAME_H_

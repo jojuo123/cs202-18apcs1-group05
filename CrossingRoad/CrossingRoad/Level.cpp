@@ -15,10 +15,10 @@ const float Level::levelListTigSpeed[5] = { 61, 75, 85, 120, 124 };
 const float Level::levelListTruckSpeed[5] = { 100, 150, 170, 190, 222 };
 const float Level::levelListMotoSpeed[5] = { 120, 149, 150, 165, 190 };
 
-const int Level::levelListMaxRedTimer[5] = { 6, 5, 4, 3, 2 };
-const int Level::levelListMinRedTimer[5] = { 1, 2, 3, 2, 1 };
-const int Level::levelListMaxGreenTimer[5] = { 6, 5, 4, 3, 2 };
-const int Level::levelListMinGreenTimer[5] = { 1, 2, 3, 2, 1 };
+const int Level::levelListMaxRedTimer[5] = { 7, 7, 6, 5, 4 };
+const int Level::levelListMinRedTimer[5] = { 1, 1, 1, 1, 1 };
+const int Level::levelListMaxGreenTimer[5] = { 6, 6, 5, 4, 4};
+const int Level::levelListMinGreenTimer[5] = { 1, 2, 1, 1, 1 };
 
 vector<ObjectType> Level::getObstacle()
 {
