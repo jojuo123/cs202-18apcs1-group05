@@ -32,6 +32,7 @@ private:
 	sf::Font menuFont;
 	sf::SoundBuffer gameOverSoundBuffer;
 	sf::Sound gameOverSound;
+	sf::Music bgm;
 	Scene();
 	
 	static Scene* sc;

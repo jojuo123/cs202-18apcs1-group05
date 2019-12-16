@@ -92,8 +92,8 @@ void Game::InitMap()
 			AddObject(i, obj[i]);
 		}
 	}
-	for (int row = 0; row < lampList.size(); ++row)
-		cerr << row << " " << lampList[row].GetState() << endl;
+	//for (int row = 0; row < lampList.size(); ++row)
+	//	cerr << row << " " << lampList[row].GetState() << endl;
 }
 
 void Game::AddLamp(int _row, ObjectType o)
