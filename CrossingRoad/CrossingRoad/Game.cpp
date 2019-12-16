@@ -225,8 +225,8 @@ void Game::HandlePlayerInput(int input, bool soundOn)
 		break;
 	}
 	case PLAYERINPUT_MOVELEFT: {
-		if (c.x-1>=-columns/2)
-			player->Move(LEFT, 32);
+		if (c.x-1 >= columns/2 - 24)
+			player->Move(LEFT, 16);
 		player->playSound(soundOn);
 		break;
 	}
@@ -237,8 +237,8 @@ void Game::HandlePlayerInput(int input, bool soundOn)
 		break;
 	}
 	case PLAYERINPUT_MOVERIGHT: {
-		if (c.x+1<columns+columns/2)
-			player->Move(RIGHT, 32);
+		if (c.x+1 <= 24+columns/2)
+			player->Move(RIGHT, 16);
 		player->playSound(soundOn);
 		break;
 	}
@@ -285,4 +285,22 @@ void Game::generateObject()
 			}
 		}
 	}
+}
+
+Game::~Game()
+{
+	//delete map;
+	/*for (int i = 0; i < rows; i++)
+		delete[] map[i];
+	delete[] map;*/
+	delete player;
+	//delete elements in deque
+	for (deque<Object*>& ob : dqOb) {
+		while (!ob.empty()) {
+			delete ob.front();
+			ob.pop_front();
+		}
+	}
+	dqOb.clear();
+	//delete object
 }
