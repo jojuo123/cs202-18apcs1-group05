@@ -42,11 +42,16 @@ void Object::Move(Direction dir, objSize numPixel)
 	}
 }
 
-void Object::playSound()
+void Object::playSound(bool on)
 {
-	sf::Sound sound;
-	sound.setBuffer(buffer);
-	sound.play();
+	if (on) {
+		sound.setBuffer(buffer);
+		sound.play();
+		//while (sound.getStatus() == sf::Sound::Playing) //Wait for playing done.
+		//{
+		//	sf::sleep(sf::milliseconds(10));
+		//}
+	}
 }
 
 bool Object::isOutOfScreen()

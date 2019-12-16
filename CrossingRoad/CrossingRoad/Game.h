@@ -51,7 +51,7 @@ public:
 	void resetGame();
 	void SaveGame(istream);
 	void LoadGame(ostream);
-	void HandlePlayerInput(int input);
+	void HandlePlayerInput(int input, bool soundOn=true);
 	void Pause(HANDLE);
 	void Resume(HANDLE);
 	void UpdateObstaclesPosition();

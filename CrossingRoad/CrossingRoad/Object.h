@@ -21,6 +21,7 @@ protected:
 	ObjectType type;
 	Coord coord; //LET IT MOVE TO PLAYER.h. In any case, rebuild it here :<
 	sf::SoundBuffer buffer;
+	sf::Sound sound;
 	Direction dir; //<- What is this?
 	//bool isDead = false;
 	//shape
@@ -32,7 +33,7 @@ public:
 	//virtual void Move(objSize, objSize); //relative objSizes for moves
 	virtual void Move(Direction dir, objSize numPixel);
 	sf::Rect<objSize> getPosition() const { return position; }
-	void playSound();
+	void playSound(bool on = true);
 	//virtual void UpdatePosition();
 	//bool isOutOfScreen();
 	Direction getDirection() { return dir; }

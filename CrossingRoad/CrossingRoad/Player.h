@@ -23,7 +23,7 @@ public:
 	bool isHit(Object * &obs);
 	bool inRange();
 	void Move(Direction dir, objSize numPixel);
-	void playSound();
+	//void playSound();
 	friend class Game;
 	friend class Scene;
 };
