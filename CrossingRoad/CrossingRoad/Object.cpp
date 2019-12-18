@@ -6,12 +6,12 @@ Object::Object(unitPerSecond _s, Coord _c, string texturePath, string soundPath,
 	using namespace std;
 	texture = new sf::Texture;
 	if (!texture->loadFromFile(texturePath)) {
-		cerr << "Object.cpp deo the load hinh: " << texturePath << endl;
+		cerr << "Object.cpp ko the load hinh: " << texturePath << endl;
 		delete texture;
 		texture = nullptr;
 	}
 	if (!buffer.loadFromFile(soundPath)) {
-		cerr << "Object.cpp deo the load am thanh: " << soundPath << endl;
+		//cerr << "Object.cpp ko the load am thanh: " << soundPath << endl;
 	}
 }
 

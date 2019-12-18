@@ -2,13 +2,13 @@
 #include <algorithm>
 
 const int Level::levelListRoad[5] = {
-	10, 15, 20, 25, 30
+	11, 17, 28, 32, 38
 };
 const int Level::levelListDinoLane[5] = {1,3,0,2,3};
 const int Level::levelListTigLane[5] = { 2,3,0,0,27 };
 const int Level::levelListTruckLane[5] = { 2,3,0,22,0 };
 const int Level::levelListMotoLane[5] = { 2,3,17,0,0 };
-const int Level::levelListGrassLane[5] = { 4,3,3,3,3 };
+const int Level::levelListGrassLane[5] = { 4,5,8,8,8 };
 
 const float Level::levelListDinoSpeed[5] = { 71, 87, 99,115, 135 };
 const float Level::levelListTigSpeed[5] = { 61, 75, 85, 120, 124 };

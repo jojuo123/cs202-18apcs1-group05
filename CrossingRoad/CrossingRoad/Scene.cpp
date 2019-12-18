@@ -372,6 +372,7 @@ Object* Scene::checkCollision()
 	while (!dq.empty()) {
 		Object *p = dq.front(); dq.pop_front();
 		bool isHit = this->g->player->isHit(p);	
+		//isHit = 0;
 		if (isHit == 1)
 		{
 			g->ChangeState(GAME_OVER_COLLISION_GAME);			

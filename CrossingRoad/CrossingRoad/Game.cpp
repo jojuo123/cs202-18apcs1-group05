@@ -130,9 +130,9 @@ void Game::AddObject(int _row, ObjectType o)
 		case DINOSAUR:
 			rdOpt = rand() % 2;
 			if (rdOpt == 0)
-				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur.gif", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur.gif", "sound/vvh.wav", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			else 
-				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur2.png", "sound/csdn", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
+				obs = Obstacle::Create(o, l.DinoSpeed(), temp, "image/dinosaur2.png", "sound/vvh.wav", { col * PIXEL_SIZE, _row * PIXEL_SIZE, 2 * PIXEL_SIZE, PIXEL_SIZE });
 			obs->setDirection(dir);
 			dqOb[_row].push_front(obs);
 			break;

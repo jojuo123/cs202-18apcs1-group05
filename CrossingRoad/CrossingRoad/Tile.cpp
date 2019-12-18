@@ -9,7 +9,7 @@ position(position) {
 	using namespace std;
 	texture = new sf::Texture();
 	if (!texture->loadFromFile(imgPath)) {
-		cerr << "Tile.cpp Load anh co van de roi thang loz: " << imgPath << endl;
+		cerr << "Tile.cpp Load anh co van de " << imgPath << endl;
 		delete texture;
 		texture = nullptr;
 		return;

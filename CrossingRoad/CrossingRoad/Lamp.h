@@ -16,7 +16,7 @@ public:
 	{
 		Object::timer = 0;
 	}
-	Lamp(unitPerSecond _s, Coord _c, string texturePath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, "sound/lampSound.wav", _t, _pos)
+	Lamp(unitPerSecond _s, Coord _c, string texturePath, ObjectType _t, sf::Rect<objSize> _pos) : Object(_s, _c, texturePath, "sound/kenxetai.wav", _t, _pos)
 	{
 		Object::timer = _s;
 	}
